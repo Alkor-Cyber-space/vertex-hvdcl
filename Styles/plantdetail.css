@@ -1,0 +1,898 @@
+:root {
+    --bg: #f3f6f4;
+    --card: #ffffff;
+    --green: #0a8159;
+    --teal: #00a66a;
+    --muted: #9aa4a0;
+    --dark: #073e3a;
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+}
+
+.sidebar {
+    display: none !important;
+}
+
+html,
+body {
+    margin-top: 30px;
+    height: 100%;
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    background: var(--bg);
+    color: #112;
+}
+
+.page {
+    margin: 18px auto;
+    padding: 14px;
+}
+
+/* --- LEFT SECTION --- */
+
+.top-section {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.left-section {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.left-section img {
+    width: 350px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Detail box */
+.plant-details-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    width: 350px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plant-details-card p {
+    margin: 12px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.label {
+    font-weight: 600;
+}
+
+/* Weather cards */
+.weather-wrapper {
+    display: flex;
+    gap: 2px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.weather-card {
+    background: white;
+    padding: 12px 1px;   /* increase vertical padding */
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+
+    flex: 1;
+    min-width: 67px;
+    min-height: 190px !important;
+}
+
+.weather-card p {
+    margin: 8px 0 2px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.weather-card .temp {
+    font-size: 15px;
+    margin: 14px 0 6px;
+}
+
+.weather-card .icon img {
+    margin-top: 25px;
+    width: 42px;
+    height: 42px;
+}
+
+/* --- RIGHT SECTION --- */
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Overview block follows Figma vertically */
+.right-overview-section {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+}
+
+/* --- Gauges row --- */
+.gauges-col {
+    display: flex;
+    gap: 8px;
+    background: white;
+    padding: 8px;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.gauge-card {
+    width: 200px;
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+.g-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--green);
+    text-align: right;
+}
+
+.gauge-svg {
+    width: 100%;
+    height: 70px;
+}
+.gauge-progress {
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.gauge-needle {
+  transition: transform 0.6s ease;
+}
+
+.gauge-card.offline .gauge-progress {
+  stroke: #dcdcdc;
+}
+
+.gauge-card.offline .status-text {
+  color: #00a3ff;
+}
+
+.gauge-card.offline .power-text {
+  color: #777;
+}
+
+.g-value {
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.g-value span {
+    margin-top: 8px;
+    background: #e7f7ef;
+    color: var(--green);
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+
+}
+
+/* --- STAT CARDS --- */
+.stat-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 16px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+.stat-card {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+    padding: 10px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+.stat-card .icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.stat-card .label {
+    font-size: 12px;
+}
+
+.stat-card .num {
+    margin-top: 8px;
+}
+
+/* Gradients */
+.stat-1 {
+    background: #617B8E;
+}
+
+.stat-2 {
+    background: #87BD4A;
+}
+
+.stat-3 {
+    background: #03BBD6;
+}
+
+.stat-4 {
+    background: #4CC7B3;
+}
+
+/* Chart block */
+.chart-card {
+    background: white;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* MAIN CHART (TOP) */
+.chart-body {
+  height: 320px;        /* 🔥 matches Figma */
+  padding: 10px 0;
+}
+
+#pvChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* BOTTOM INVERTER CURVE */
+#curveView .chart-body {
+  height: 260px;        /* 🔥 inverter curve height */
+}
+
+#pvChartBottom {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+.chart-card,
+.chart-body,
+#mainChartCard {
+  overflow: visible !important;
+}
+
+/* Prevent parent scroll stealing wheel */
+.page,
+.right-section {
+  overscroll-behavior: contain;
+}
+.chart-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* ✅ KEY FIX */
+    width: 100%;
+    gap: 12px;
+}
+
+.chart-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    /* ✅ THIS MAKES GRAPH FULL WIDTH */
+}
+
+.chart-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.tabs {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Each button */
+.tab {
+    padding: 8px 15px;
+    border: none;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+    color: #444;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+/* Active button */
+.tab.active {
+    background: #00796b;
+    /* your green */
+    color: #fff;
+}
+
+/* Remove focus outline */
+.tab:focus {
+    outline: none;
+}
+
+.chart-info {
+    color: #55555599;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    font-size: 13px;
+
+}
+
+.date-area {
+    margin-left: auto
+}
+
+.date-area input {
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: none;
+}
+
+/* .chart-body {
+    padding: 4px;
+    border-radius: 8px
+} */
+
+.filter {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: end;
+    align-items: end;
+}
+
+.chart-filter {
+    display: flex;
+    gap: 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #d8d8d8;
+    align-items: center;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    font-size: 12px;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #777;
+}
+
+.filter-btn.active {
+    color: #0a8159;
+}
+
+/* toggle */
+.gen-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    color: #007867;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.gen-toggle .dot {
+    width: 12px;
+    height: 12px;
+    background: #4CC7B3;
+    /* ACTIVE dot color */
+    border-radius: 4px;
+}
+
+/* When OFF: only dot and text color change */
+.gen-toggle.off {
+    /* background: #f0f0f0; */
+    color: #999;
+    border-color: #ccc;
+}
+
+.gen-toggle.off .dot {
+    background: #ccc;
+    /* OFF dot color */
+}
+
+.hidden {
+    display: none;
+}
+
+/* -----------------bottom section */
+
+.inverter-section {
+    background: #043a32;
+    border-radius: 14px;
+    color: #dff6f1;
+    padding: 20px;
+    width: 100%;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    box-sizing: border-box;
+
+}
+
+.inv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inv-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.inv-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.inv-switch img {
+    margin-top: 7px;
+}
+
+.hidden {
+    display: none;
+}
+
+.inv-card {
+    max-width: 100%;
+}
+
+.inv-title {
+    color: #7be5d6;
+    font-size: 14px;
+    margin: 0;
+}
+
+.curve-link {
+    color: #7be5d6;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.curve-link:hover {
+    text-decoration: underline;
+}
+
+.details {
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 6px;
+}
+
+/* COMMON ROW */
+.inv-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+/* LEFT */
+.inv-left .inv-title {
+    color: #7be5d6;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* CENTER */
+.inv-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: auto; */
+}
+
+/* CIRCLE */
+.energy-circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background:linear-gradient(to right, #ffffff, #999999) ;
+    padding: 8px;
+}
+
+.energy-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border:7px solid #003B32;
+    background: radial-gradient(circle at center,
+            #65797d 2%,
+            #0aa6c8 95%,
+            #0789a9 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.35);
+}
+
+.energy-top {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.energy-value {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.energy-unit {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* BOTTOM CARDS */
+.inv-bottom-cards {
+    margin-top: 25px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.mini-card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 12px;
+    width: 120px;
+}
+
+.mini-card strong {
+    display: block;
+    margin-top: 6px;
+}
+
+.mini-card img {
+    height: 40px;
+    width: 40px;
+}
+
+.status-pill {
+    background: #ffffff;
+    color: #043a32;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* RIGHT */
+.inv-right {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.chart-body {
+    position: relative;
+    height: 320px;
+    width: 100%;
+    border: #03BBD6 1px;
+}
+
+#pvChartBottom {
+    width: 100% !important;
+    height: 100% !important;
+    border: #007867 1px sollid;
+}
+
+.mode-switch {
+    display: flex;
+    align-items: center;
+}
+
+.mode-btn {
+    background: #4CC7B3;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.mode-btn.outline {
+    background: transparent;
+    color: #c7fff4;
+    border: 1px solid #c7fff4;
+    margin-left: 2px;
+}
+
+.mode-btn.active {
+    background: #4CC7B3;
+    color: #fff;
+}
+
+.power-dropdown {
+    position: relative;
+}
+
+.power-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 180px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    z-index: 99;
+}
+
+.power-menu.hidden {
+    display: none;
+}
+
+.power-menu .menu-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    color: #444;
+}
+
+.power-menu .menu-item:hover {
+    background: #f2f4f6;
+}
+
+.arrow {
+    margin-left: 6px;
+}
+
+.inv-edit-form {
+    padding: 10px;
+}
+
+.edit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.edit-col label {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 14px;
+    display: block;
+}
+
+.edit-col input,
+.edit-col select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    width: 100%;
+    padding: 4px 0;
+    outline: none;
+}
+
+.edit-col input:focus,
+.edit-col select:focus {
+    border-bottom-color: #00d5ff;
+}
+
+/* ACTION BUTTONS WRAPPER */
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+/* BASE BUTTON */
+.edit-actions button {
+    min-width: 88px;
+    height: 34px;
+    padding: 0 16px;
+    font-size: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* CANCEL BUTTON */
+.btn-cancel {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* SAVE BUTTON */
+.btn-save {
+    background: #00d5ff;
+    border: none;
+    color: #002b2b;
+    font-weight: 500;
+}
+
+.btn-save:hover {
+    background: #00bfe6;
+}
+
+/* ACTIVE PRESS */
+.edit-actions button:active {
+    transform: translateY(1px);
+}
+
+/* Column behaves like inverter rows */
+.row-style {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Single row */
+.edit-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+/* Left text (Model, SN, etc.) */
+.edit-label {
+    min-width: 130px;
+    /* keeps alignment consistent */
+    font-size: 14px;
+    opacity: 0.9;
+    color: #fff;
+}
+
+/* Input looks invisible */
+.edit-row input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    padding: 2px 0;
+    text-align: right;
+    /* matches your view mode */
+}
+
+/* Focus effect */
+.edit-row input:focus {
+    color: #00d5ff;
+}
+
+/* ===== FIX CURVE WIDTH ISSUE ===== */
+
+.curve-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.curve-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.curve-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* Ensure card fills section */
+#curveView.inv-card {
+    width: 100%;
+    padding: 18px 20px;
+}
+
+/* Chart container must stretch */
+#curveView .chart-body {
+    width: 100%;
+}
+
+#curveView .date-area input {
+    color: white;
+}
+
+#curveView .chart-filter {
+    background: none;
+
+}
+
+#curveView .chart-filter .filter-btn {
+    color: white;
+
+}
+
+#curveView .chart-filter .filter-btn.active {
+    color: #0a8159;
+
+}
+/* ===========================
+   CHART FULLSCREEN MODE
+=========================== */
+
+.chart-card.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  padding: 20px;
+  background: #fff;
+}
+
+/* Chart should grow */
+.chart-card.fullscreen .chart-body {
+  height: calc(100vh - 120px);
+}
+
+/* Optional: hide page scroll */
+body.chart-expanded {
+  overflow: hidden;
+}
+
+.expand-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

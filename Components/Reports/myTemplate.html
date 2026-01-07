@@ -1,0 +1,54 @@
+<div class="template-table-container">
+    <table class="template-table">
+        <thead>
+            <tr>
+                <th style="width:80px;">Number</th>
+                <th style="width:220px;">Template Name</th>
+                <th>Template Description</th>
+                <th style="width:180px;">Save Time</th>
+                <th style="width:140px;">Operator</th>
+                <th style="width:140px;">Operation</th>
+            </tr>
+        </thead>
+        <tbody id="templateTableBody">
+            <!-- JS renders here -->
+        </tbody>
+    </table>
+
+</div>
+    <div id="templatePagination" class="pagination-bar"></div>
+<div id="viewTemplateModal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h4>Template Details</h4>
+            <span class="modal-close" data-close>&times;</span>
+        </div>
+
+        <div class="modal-body">
+            <p><strong>Name:</strong> <span id="viewName"></span></p>
+            <p><strong>Description:</strong> <span id="viewDesc"></span></p>
+            <p><strong>Save Time:</strong> <span id="viewTime"></span></p>
+            <p><strong>Operator:</strong> <span id="viewOperator"></span></p>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-secondary" data-close>Close</button>
+        </div>
+    </div>
+</div>
+<div id="deleteTemplateModal" class="modal-overlay hidden">
+    <div class="modal-card small">
+        <div class="modal-header">
+            <h3>Delete Template</h3>
+        </div>
+
+        <div class="modal-body">
+            Are you sure you want to delete this template?
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-secondary" data-close>Cancel</button>
+            <button class="btn-danger" id="confirmDelete">Delete</button>
+        </div>
+    </div>
+</div>

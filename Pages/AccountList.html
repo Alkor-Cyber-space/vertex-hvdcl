@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HVDC Management</title>
+    <link rel="stylesheet" href="../Styles/AccountList.css" />
+</head>
+
+<body>
+<div class="main">
+    <div class="content">
+
+        <div class="panel">
+
+            <!-- ACTIONS -->
+            <div class="actions">
+                <div class="actions-left">
+                    <input
+                        type="text"
+                        class="input"
+                        id="emailSearch"
+                        placeholder="email"
+                    >
+                    <button class="search-btn" id="searchBtn">Search</button>
+                </div>
+
+                <button class="add-btn">Add</button>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-box">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Account role</th>
+                        <th>Operation</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="accountTableBody">
+                        <!-- 🔥 rows injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

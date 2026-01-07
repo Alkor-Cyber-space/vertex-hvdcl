@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notification Preference</title>
+  <link rel="stylesheet" href="../../Styles/mymessage.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h3>Notification Preference:</h3>
+  <p class="info">
+    The setting will take effect in about 1 hour after completion.
+  </p>
+
+  <div class="checkbox-group">
+    <label>
+      <input type="checkbox">
+      Email (Please note that the email may be in the junk mailbox.)
+    </label>
+    <label>
+      <input type="checkbox">
+      Message-Center
+    </label>
+  </div>
+
+  <hr>
+
+  <h3>Message Type:</h3>
+
+  <div class="message-row">
+    <div class="message-label">Alarm Message</div>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="alarm" value="on">
+        ON
+      </label>
+      <label>
+        <input type="radio" name="alarm" value="off" checked>
+        OFF
+      </label>
+    </div>
+  </div>
+
+  <div class="message-row">
+    <div class="message-label">Generation Report</div>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="generation" value="on">
+        ON
+      </label>
+      <label>
+        <input type="radio" name="generation" value="off" checked>
+        OFF
+      </label>
+    </div>
+  </div>
+
+  <p class="note">
+    Generation report push function does not support the single retrofit inverter
+  </p>
+
+  <div class="message-row">
+    <div class="message-label">Device Offline Notification</div>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="offline" value="on">
+        ON
+      </label>
+      <label>
+        <input type="radio" name="offline" value="off" checked>
+        OFF
+      </label>
+    </div>
+  </div>
+
+  <p class="note">
+    Device offline notification are only supported for dataloggers in the EzloggerPro and SEC1000 series.
+  </p>
+
+  <hr>
+
+  <div class="buttons">
+    <button class="btn reset">Reset</button>
+    <button class="btn save">Save Changes</button>
+  </div>
+
+</div>
+
+</body>
+</html>

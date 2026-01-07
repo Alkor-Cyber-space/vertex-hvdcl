@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Device Management</title>
+
+<link rel="stylesheet" href="../styles/Navbar.css">
+<link rel="stylesheet" href="../Styles/devicedetail.css">
+
+<style>
+/* Popup Overlay */
+.popup-wrapper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Popup Box */
+.popup-box {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+}
+
+/* Detect link */
+.detect-link {
+    color: #007aff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Load Navbar -->
+<div id="header-container"></div>
+<script>
+    fetch("../Components/Navbar.html")
+        .then(res => res.text())
+        .then(html => document.getElementById("header-container").innerHTML = html);
+</script>
+
+
+<div class="device-page">
+
+    <!-- Top Section -->
+    <div class="top-head">
+        <div class="device-info">
+            <h4>M_259004_000001</h4>
+            <p>Megha nivas,malap, kozhummal post, kairvellur, Kannur</p>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 25px;">
+            <a class="detect-link" id="open-detect">Detect other devices</a>
+            <button class="btn-add" id="open-add-device">Add</button>
+        </div>
+    </div>
+
+    <!-- Main Tabs -->
+    <div class="main-tabs">
+        <button class="active">Inverter</button>
+        <button>Micro Inverter</button>
+        <button>Data Logger</button>
+        <button>EV Charger</button>
+    </div>
+
+    <!-- Sub Tabs -->
+     <!--
+    <div class="sub-tabs">
+        <button class="active" id="btn-inverter">Inverter</button>
+        <button id="btn-replace">Replacement History</button>
+    </div>
+-->
+    <!-- DEVICE TAB CONTENT LOADER -->
+    <div id="device-content"></div>
+
+</div>
+
+<!-- POPUP -->
+<div id="detect-popup" class="popup-wrapper">
+    <div id="detect-content" class="popup-box"></div>
+</div>
+
+<script src="../Scripts/activeLinks.js"></script>
+<script src="../Scripts/subTabs.js"></script>
+
+<script>
+/* ------------------------------
+   LOAD DEVICE POPUPS
+------------------------------ */
+
+// DETECT POPUP
+document.getElementById("open-detect").addEventListener("click", () => {
+
+    fetch("detectdevice.html")
+        .then(res => res.text())
+        .then(html => {
+
+            document.getElementById("detect-content").innerHTML = html;
+            document.getElementById("detect-popup").style.display = "flex";
+
+            document.querySelectorAll(".close-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.getElementById("detect-popup").style.display = "none";
+                });
+            });
+
+            const scanByDL = document.querySelector(".scan-option:nth-of-type(1)");
+            const scanByInv = document.querySelector(".scan-option:nth-of-type(2)");
+
+            if (scanByDL) scanByDL.addEventListener("click", () => startScan("datalogger"));
+            if (scanByInv) scanByInv.addEventListener("click", () => startScan("inverter"));
+
+        });
+});
+
+// ADD DEVICE POPUP
+document.getElementById("open-add-device").addEventListener("click", () => {
+
+    fetch("selectdevice.html")
+        .then(res => res.text())
+        .then(html => {
+
+            const popup = document.getElementById("detect-content");
+            popup.innerHTML = html;
+            document.getElementById("detect-popup").style.display = "flex";
+
+            // CANCEL
+            popup.querySelector(".cancel-btn").addEventListener("click", () => {
+                document.getElementById("detect-popup").style.display = "none";
+            });
+
+            // NEXT → Load form
+            popup.querySelector(".next-btn").addEventListener("click", () => {
+
+                fetch("adddeviceform.html")
+                    .then(r => r.text())
+                    .then(formHtml => {
+
+                        popup.innerHTML = formHtml;
+
+                        popup.querySelector(".close-btn").addEventListener("click", () => {
+                            document.getElementById("detect-popup").style.display = "none";
+                        });
+
+                    });
+            });
+        });
+});
+</script>
+
+<script>
+/* ------------------------------
+   DEVICE SCAN FUNCTION
+------------------------------ */
+function startScan(type) {
+
+    const content = document.getElementById("detect-content");
+
+    content.innerHTML = `
+        <div class="popup-content scanning-popup">
+            <div class="popup-header">
+                <h2>New Devices</h2>
+            </div>
+
+            <main class="main-content">
+                <div class="equipment-bar">
+                    <p>Discoverable equipment types: Inverter, EMI</p>
+                </div>
+
+                <div class="spinner-container">
+                    <div class="spinner-outer"></div>
+                    <div class="spinner-mid"></div>
+                    <div class="spinner-inner"></div>
+                    <div class="spinner-dot"></div>
+
+                    <div class="spinner-rotate">
+                        <div class="spinner-pointer"></div>
+                    </div>
+                </div>
+
+                <p class="loading-text">Scanning new devices, please wait....</p>
+            </main>
+        </div>
+    `;
+
+    setTimeout(() => {
+        fetch(type === "datalogger" ? "result-datalogger.html" : "result-inverter.html")
+            .then(res => res.text())
+            .then(html => {
+                content.innerHTML = html;
+
+                document.querySelectorAll(".close-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        document.getElementById("detect-popup").style.display = "none";
+                    });
+                });
+            });
+    }, 5000);
+}
+</script>
+
+
+<!-- ============================================
+     🚀 MAIN TABS — LOAD HTML PAGES
+============================================ -->
+<script>
+const tabs = document.querySelectorAll(".main-tabs button");
+const deviceContent = document.getElementById("device-content");
+
+const pageMap = {
+    "Inverter": "devicedetail-tables/inverter.html",
+    "Micro Inverter": "devicedetail-tables/microinverter.html",
+    "Data Logger": "devicedetail-tables/datalogger.html",
+    "EV Charger": "devicedetail-tables/evcharger.html"
+};
+
+// Load default tab
+loadTab("Inverter");
+
+// Tab click events
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        loadTab(tab.innerText.trim());
+    });
+});
+
+
+// ⭐⭐ PASTE FUNCTION HERE ⭐⭐
+function loadTab(tabName) {
+    const file = pageMap[tabName];
+
+    fetch(file)
+        .then(res => res.text())
+        .then(html => {
+            deviceContent.innerHTML = html;
+
+            // ⭐ Call sub-tabs AFTER html loads
+            if (window.initSubTabs) initSubTabs();
+            if (window.initRFIDTooltip) initRFIDTooltip();
+            if (window.initRFIDModal) initRFIDModal();
+            if (window.initModifyModal) initModifyModal();
+            if (window.initReplaceModal) initReplaceModal();
+            if (window.initDeleteModal) initDeleteModal();
+        })
+        .catch(() => {
+            deviceContent.innerHTML = "<p>Error loading content...</p>";
+        });
+}
+</script>
+
+</body>
+</html>

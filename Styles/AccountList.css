@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  width: 100%;
+  background: #f6f7f8;
+}
+
+/* CONTENT */
+.content {
+  width: 100%;
+}
+
+/* new panel (white card) to match screenshot */
+.panel {
+  background: #f3f5f4;
+  /* faint outer area to match screenshot edge */
+  padding: 8px;
+  border-radius: 8px;
+  /* place inner white card */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12x;
+  margin-bottom: 18px;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+/* left part: search input */
+.actions-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input {
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 9px;
+  width: 300px;
+  background: #fafafa;
+  color: #0F0E0E99;
+}
+
+.search-btn {
+  padding: 10px 32px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  background: linear-gradient(to right, #00a76f, #00a79d);
+  color: white;
+  transition: transform 0.2s;
+}
+
+.search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 167, 111, 0.3);
+}
+
+/* Add button on the right */
+.add-btn {
+  background: #0ca47a;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(12, 164, 122, 0.12);
+}
+
+/* TABLE */
+.table-box {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  margin-top: 16px;
+}
+
+.table-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-box thead th {
+  background: #0A8159;
+  color: #fff;
+  text-align: left;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.table-box tbody td {
+  padding: 10px 18px;
+  border-top: 1px solid #f1f1f1;
+  color: #444;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* single row appearance similar to screenshot: lots of white space */
+.table-box tbody tr:first-child td {
+  border-top: none;
+}
+
+/* ensure header/nav spacing remains good */
+.header {
+  height: 64px;
+  padding: 0 28px;
+}
+
+/* responsive fallback */
+@media (max-width: 900px) {
+  .content {
+    margin-left: 60px;
+  }
+
+  .sidebar {
+    width: 60px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .input {
+    width: 160px;
+  }
+}

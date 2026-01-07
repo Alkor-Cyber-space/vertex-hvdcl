@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings</title>
+    <link rel="stylesheet" href="../../Styles/systemsettings.css">
+    <!-- Using Google Fonts for a premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="system-setting-container">
+        <!-- Top Info Alert -->
+        <div class="info-alert">
+            <svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 16H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M12 8V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <span>This profit ratio settings is the default value for the rate of return of the power station,and does
+                not affect the setting of the actual profit ratio of planet</span>
+        </div>
+
+        <!-- Main Settings Board -->
+        <div class="settings-card">
+
+            <!-- Profit Ratio Section -->
+            <div class="section">
+                <div class="section-title">Profile Ratio for Plant Setting:</div>
+                <div class="input-group-row">
+                    <label>Default Profit Ratio:</label>
+                    <input type="text" value="0.22" class="ratio-input">
+                    <div class="select-wrapper">
+                        <select>
+                            <option>USD/kWh</option>
+                            <option>EUR/kWh</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Environmental Contributions Section -->
+            <div class="section">
+                <div class="section-title">
+                    Coefficient of Environmental Contributions :
+                    <span class="subtitle">Settings are only valid for your organization</span>
+                </div>
+
+                <div class="env-grid">
+                    <div class="env-label">Coefficient of Environmental Contribution</div>
+
+                    <div class="env-inputs">
+                        <div class="env-row">
+                            <span class="unit-prefix">1kWh =</span>
+                            <input type="text" value="0.00">
+                            <span class="unit-suffix">Kg CO2 Reduction</span>
+                        </div>
+
+                        <div class="env-row">
+                            <span class="unit-prefix">1kWh =</span>
+                            <input type="text" value="0.00">
+                            <span class="unit-suffix">Trees</span>
+                        </div>
+
+                        <div class="env-row">
+                            <span class="unit-prefix">1kWh =</span>
+                            <input type="text" value="0.00">
+                            <span class="unit-suffix">Kg Coal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-reset">Reset</button>
+                <button class="btn-save">Save Changes</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+html,
+body {
+  /* margin: 10px; */
+  height: 90%;
+  margin-top: 65px;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  color: #112;
+  /* border: #076243 1px solid; */
+}
+
+.settings-layout {
+  display: flex;
+  height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.sidebar {
+  display: none !important;
+}
+
+.settings-sidebar {
+  width: 250px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  border-right: 1px solid #e5e7eb;
+}
+
+.settings-sidebar .menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.settings-sidebar .group-title {
+  display: block;
+  padding: 14px 18px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.settings-sidebar .menu-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #9aa4a0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.settings-sidebar .menu-item:hover,
+.settings-sidebar .menu-item.active {
+  background: #076243;
+  color: #fff;
+}
+
+.menu-group {
+  padding: 6px 0;
+  background: transparent;
+  color: #9aa4a0;
+}
+
+.menu-group.active {
+  background: #076243;
+  color: #ffffff;
+}
+
+.menu-group:hover {
+  background: #076243;
+  color: #ffffff;
+
+}
+
+.settings-content {
+  flex: 1;
+  background: #f3f4f6;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+#settingsContent {
+  min-height: 70%;
+  
+}

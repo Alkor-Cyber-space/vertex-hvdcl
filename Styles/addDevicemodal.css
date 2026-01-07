@@ -1,0 +1,95 @@
+/* Overlay */
+
+/* Popup Container */
+.popup-content.select-devices-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    z-index: 1000;
+}
+
+/* Header */
+.popup-header {
+    background: #0E9577;
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.popup-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Device Grid */
+.device-grid {
+    display: flex;
+    justify-content: space-around;
+    padding: 28px 15px;
+}
+
+.device-card {
+    width: 130px;
+    text-align: center;
+    border: 2px solid #00B3A4;
+    border-radius: 12px;
+    padding: 15px;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.device-card.selected,
+.device-card:hover {
+    opacity: 1;
+    border-color: #0E9577;
+}
+
+.device-title {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #0E9577;
+}
+
+/* Button Row */
+.btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0 30px;
+}
+
+.cancel {
+    padding: 10px 40px;
+    font-size: 16px;
+    border: 2px solid #0E9577;
+    border-radius: 10px;
+    background: white;
+    color: #0E9577;
+    cursor: pointer;
+}
+
+.submit {
+    padding: 10px 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #0E9577, #0FB4A9);
+    border: none;
+    color: white;
+    cursor: pointer;
+}

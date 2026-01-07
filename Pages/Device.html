@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Table</title>
+    <link rel="stylesheet" href="../Styles/Device.css">
+    <link rel="stylesheet" href="../Styles/Navbar.css">
+</head>
+<body>
+
+    <!-- Load Shared Header + Sidebar -->
+    <div id="header-container"></div>
+
+    <script>
+        fetch("../Components/Navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header-container").innerHTML = html;
+
+                // Load active script AFTER header loads
+                const script = document.createElement("script");
+                script.src = "../Scripts/activeLinks.js";
+                document.body.appendChild(script);
+            });
+    </script>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="content-area">
+
+        <div class="top-filter-box">
+
+            <!-- DROPDOWN BOX -->
+            <div class="select-box">
+                <img src="../Asset/location.png" class="inside-icon">
+                <select class="filter-dropdown">
+                    <option>Global</option>
+                </select>
+            </div>
+
+            <!-- SEARCH INPUT BOX -->
+            <div class="input-box">
+                <img src="../Asset/bolt.png" class="inside-icon">
+                <input type="text" class="search-input" placeholder="Please enter plant / SN / email">
+            </div>
+
+            <button class="search-btn">Search</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plant</th>
+                        <th>Classification</th>
+                        <th>Capacity</th>
+                        <th>Creation Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                    <tr><td>M_250904_00001</td><td>Ground-Mounted</td><td>5kW</td><td>09.04.2025</td></tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button class="next-btn">Next</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

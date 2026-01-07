@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f6f7f8;
+}
+/* ===== HEADER ===== */
+/* .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 64px;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+.logo img {
+  height: 34px;
+}
+
+nav.nav {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+}
+
+nav.nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #333;
+  transition: 0.25s;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+nav.nav a:hover {
+  background: #e8f7f5;
+  color: #00a896;
+}
+.nav a.active {
+  background: #e8f7f5 !important;
+  color: #00a896 !important;
+}
+.sidebar a.active {
+  background: #076243 !important;
+  color: white !important;
+}
+
+.badge-alarm {
+  background: #e8f7f5;
+  color: #00a896;
+}
+
+nav.nav img {
+  width: 18px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn img {
+  height: 20px;
+}
+
+.btn-lobby {
+  background: linear-gradient(to right, #00a76f, #00a79d);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+} */
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  width: 220px;
+  height: calc(100vh - 64px);
+  background: #fff;
+  border-right: 1px solid #611111;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  border:2px #000;
+}
+
+.sidebar a {
+  padding: 14px 20px;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.25s ease;
+}
+
+.sidebar a img {
+  width: 20px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #076243;
+  color: #fff;
+}
+.main-content {
+  margin-left: 220px;   /* sidebar width */
+  margin-top: 64px;     /* header height */
+  padding: 20px;
+  min-height: calc(100vh - 64px);
+}
+/* ACTIVE STATE FOR SIDEBAR */
+.sidebar a.active {
+  background: #076243 !important;
+  color: #fff !important;
+}
+
+/* ACTIVE STATE FOR TOP NAV */
+.nav p.active {
+  background: #e8f7f5 !important;
+  color: #00a896 !important;
+}
+

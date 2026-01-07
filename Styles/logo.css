@@ -1,0 +1,127 @@
+/* ================================
+   LOGO SETTING PAGE
+================================ */
+body{
+    margin-top: 1px;
+}
+.logo-setting-container {
+  max-width: 900px;
+}
+
+
+
+.logo-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.logo-section {
+  margin-bottom: 22px;
+}
+
+.logo-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.logo-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.logo-name {
+  width: 200px;
+  font-size: 15px;
+  color: #5F5F5F;
+}
+
+.logo-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upload-box {
+  width: 400px;
+  height: 80px;
+  background: #f5f6f7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  background: #eef2f1;
+}
+            /* <span class="plus">+</span> */
+
+.plus {
+  font-size: 24px;
+  color: #999;
+  font-weight: 500;
+}
+
+.logo-hint {
+  font-size: 12px;
+}
+
+.logo-hint.error {
+  color: #ff4d4f;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+button {
+    padding: 8px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: 1px solid transparent;
+}
+
+.btn-reset {
+    background-color: transparent;
+    color: #01A777;
+    border: 1px solid ;
+}
+
+.btn-save {
+    background: linear-gradient(to right, #00A76F, #00A79D);
+    color:white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .logo-row {
+    flex-direction: column;
+  }
+
+  .logo-name {
+    width: 100%;
+  }
+
+  .upload-box {
+    width: 100%;
+  }
+}

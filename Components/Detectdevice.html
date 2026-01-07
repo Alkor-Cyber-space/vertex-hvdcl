@@ -1,0 +1,49 @@
+<!-- FIRST MODAL: Scan Other Devices -->
+<div id="scanModal" class="popup-content">
+
+    <div class="popup-header">
+        <h2>Scan Other Devices</h2>
+    </div>
+<div class="popup-body">
+      
+        <p class="desc">
+            Please select one way to detect other devices in your plant...
+        </p>
+    
+        <!-- Option 1 -->
+        <div class="scan-option" onclick="startScan('datalogger')">
+            <div class="option-content">
+                <div class="icon-box">
+                <img src="../Asset/image1.png">
+                </div> 
+                <div class="title-row">
+                    <span class="option-title">Scan by DataLogger</span>
+                    <p class="option-desc">Scan all devices connected to DataLogger</p>
+                </div>
+            </div>
+            <div><img src="../Asset/Expand_right.png"></div>
+        </div>
+     
+        <!-- Option 2 -->
+          <div class="scan-option" onclick="startScan('inverter')">
+            <div class="option-content">
+                <div class="icon-box">
+                <img src="../Asset/image2.png">
+                </div> 
+                <div class="title-row">
+                    <span class="option-title">Scan by Inverter</span>
+                    <p> Scan all Inverters are connected to Inverter</p>
+                    <p class="option-desc warning">(!) You need to perform this after the parallel system is adjusted.</p>
+                </div>
+            </div>
+            <div><img src="../Asset/Expand_right.png"></div>
+        </div>
+
+    
+        <div class="btn-row">
+            <button class="cancel close-btn" onclick="closeScanModal()">Cancel</button>
+            <button class="submit">Submit</button>
+        </div>
+    
+</div class="popup-body">
+</div>

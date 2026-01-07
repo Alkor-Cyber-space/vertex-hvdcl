@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports</title>
+
+  <!-- Existing Navbar styles -->
+  <link rel="stylesheet" href="../Styles/Navbar.css">
+ <link rel="stylesheet" href="../Styles/mytemplate.css">
+  <!-- New Reports layout styles -->
+  <link rel="stylesheet" href="../Styles/reportlayout.css">
+</head>
+
+<body>
+
+<div id="header-container"></div>
+  <script>
+    fetch("../Components/Navbar.html")
+        .then(res => res.text())
+        .then(html => document.getElementById("header-container").innerHTML = html);
+</script>
+
+<div class="reports-layout">
+
+<aside class="reports-sidebar">
+  <ul class="menu">
+    <li class="menu-group active">
+      <span class="group-title">Historical Data</span>
+      <ul>
+        <li class="menu-item active" data-page="dataSelection.html">
+          Data Selection
+        </li>
+        <li class="menu-item" data-page="myTemplate.html">
+          My Template
+        </li>
+      </ul>
+    </li>
+
+    <li class="menu-item" data-page="generationReports.html">
+      Generation Reports
+    </li>
+
+    <li class="menu-group">
+      <span class="group-title">Statistics</span>
+      <ul>
+        <li class="menu-item" data-page="monthlyStatistics.html">
+          Monthly
+        </li>
+        <li class="menu-item" data-page="annualStatistics.html">
+          Annual
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+</aside>
+
+
+  <main class="reports-content">
+    <div id="reportContent">
+      <!-- Loaded dynamically -->
+    </div>
+  </main>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="../Scripts/template.js"></script>
+<script src="../Scripts/generationreports.js"></script>
+<script src="../Scripts/statisticsMonthly.js"></script>
+<script src="../Scripts/annualStatistics.js"></script>
+<script src="../Scripts/reportlayout.js"></script>
+<script src="../Scripts/dataselection.js"></script>
+<script src="../Scripts/activeLinks.js"></script>
+</body>
+</html>

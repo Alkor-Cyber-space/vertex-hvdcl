@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plant Dashboard — Pixel Match</title>
+
+  <!-- Chart.js CDN -->
+<!-- Chart.js v4 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1"></script>
+
+
+  <link rel="stylesheet" href="../Styles/plantDetail.css" />
+</head>
+
+<body>
+  <div id="header-container"></div>
+
+  <script>
+    fetch("../Components/Navbar.html")
+        .then(res => res.text())
+        .then(html => document.getElementById("header-container").innerHTML = html);
+</script>
+
+<div class="page">
+
+   <div class="top-section">
+
+        <!-- ⬅ LEFT SECTION -->
+        <div class="left-section">
+
+            <div>
+                <img src="../Asset/plant_img.png"/>
+            </div>
+
+            <div class="plant-details-card">
+                <p><span class="label">Created :</span> 02.27.2025</p>
+                <p><span class="label">Classification :</span> Residential</p>
+                <p><span class="label">PV Capacity :</span> 15.00 kW</p>
+                <p><span class="label">Location :</span> Thalassery, Kerala, India</p>
+            </div>
+
+           <div class="weather-wrapper" id="weatherWrapper"></div>
+
+
+        </div> <!-- END LEFT -->
+
+        <!-- ➡ RIGHT SECTION (FIXED + Figma accurate) -->
+        <div class="right-section">
+
+            <div class="right-overview-section">
+
+                <!-- ROW 1 — GAUGES -->
+                <div class="gauges-col">
+
+                  <div class="gauge-card card" data-max="300">
+                    <div class="g-title status-text">Working</div>
+
+                    <div class="g-svg">
+                      <svg viewBox="0 0 200 120" class="gauge-svg">
+                        <defs>
+                          <linearGradient id="g1grad" x1="0" x2="1">
+                            <stop offset="0" stop-color="#cfefff"/>
+                            <stop offset="1" stop-color="#00b3ff"/>
+                          </linearGradient>
+                        </defs>
+
+                        <!-- background arc -->
+                        <path class="gauge-bg"
+                              d="M10 110 A90 90 0 0 1 190 110"
+                              stroke="#e0e0e0"
+                              stroke-width="22"
+                              fill="none"
+                              stroke-linecap="round"/>
+
+                        <!-- progress arc -->
+                        <path class="gauge-progress"
+                              d="M10 110 A90 90 0 0 1 190 110"
+                              stroke="url(#g1grad)"
+                              stroke-width="22"
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-dasharray="283"
+                              stroke-dashoffset="283"/>
+
+                        <!-- needle -->
+                      <line class="gauge-needle"
+                        x1="100" y1="110"
+                        x2="55"  y2="110"
+                        stroke="#777"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        transform-origin="100px 110px"/>
+
+                      </svg>
+                    </div>
+
+                    <div class="g-value"><span class="power-text">0W</span></div>
+                  </div>
+
+
+                    <div class="gauge-card card">
+                        <div class="g-title">Working</div>
+                        <div class="g-svg">
+                            <svg viewBox="0 0 200 120" class="gauge-svg" data-id="g2">
+                                <defs>
+                                    <linearGradient id="g2grad" x1="0" x2="1">
+                                        <stop offset="0" stop-color="#d6f1ff"/>
+                                        <stop offset="1" stop-color="#2b7bff"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M10 110 A90 90 0 0 1 190 110"
+                                      stroke="#eef9ff" stroke-width="22"
+                                      fill="none" stroke-linecap="round"/>
+                                <path d="M10 110 A90 90 0 0 1 190 110"
+                                      stroke="url(#g2grad)" stroke-width="22"
+                                      fill="none" stroke-linecap="round"/>
+                                <line x1="100" y1="110" x2="120" y2="86"
+                                      stroke="#111" stroke-width="3"
+                                      stroke-linecap="round"
+                                      transform-origin="100px 110px"/>
+                            </svg>
+                        </div>
+                        <div class="g-value"><span>20W</span></div>
+                    </div>
+
+                </div>
+
+                <!-- ROW 2 — STAT CARDS (FIXED to 4 in 1 row) -->
+                <div class="stat-row">
+
+                    <div class="stat-card card stat-1">
+                        <div class="icon"><img src="../Asset/vector 12.png"/></div>
+                        <div class="label">PV Generation Today</div>
+                        <div class="num">2.40 kWh</div>
+                    </div>
+
+                    <div class="stat-card card stat-2">
+                        <div class="icon"><img src="../Asset/vector 12.png"/></div>
+                        <div class="label">Income Today</div>
+                        <div class="num">26.35 INR</div>
+                    </div>
+
+                    <div class="stat-card card stat-3">
+                        <div class="icon"><img src="../Asset/vector 12.png"/></div>
+                        <div class="label">Total Generation</div>
+                        <div class="num">6057.60 kWh</div>
+                    </div>
+
+                    <div class="stat-card card stat-4">
+                        <div class="icon"><img src="../Asset/vector 12.png"/></div>
+                        <div class="label">Total Income</div>
+                        <div class="num">51489.60 INR</div>
+                    </div>
+
+                </div>
+
+            </div> <!-- END overview -->
+
+            <!-- 🌡 CHART AREA -->
+            <div class="right-col">
+                <div class="chart-card card" id="mainChartCard">
+
+                <div class="chart-top">
+                      <div style="display:flex;flex-direction:column; gap:5px;">
+                            <div style="display:flex; gap:5px; justify-content:center; align-items:center;">
+                                <button class="expand-btn" id="expandChartBtn">
+                                  <img src="../Asset/move.png"
+                                      style="background:#007867; padding:8px; border-radius:6px;
+                                              box-shadow: 0 2px 4px rgba(0,0,0,0.15);" />
+                                </button>
+                                <div class="tabs">
+                                   <button class="tab active" data-tab="power">Power</button>
+                                    <button class="tab" data-tab="genIncome">Generation & Income</button>
+                                </div>
+                            </div>
+    
+                            <div class="chart-info">
+                                <div>Generation: <span id="genVal">7.30 kWh</span></div>
+                                <div>Income: <span id="incVal">62.05 INR</span></div>
+                            </div>
+                     </div>
+                     <div class="filter">
+                        <div style="display:flex; gap:5px;">
+                            <div id="timeFilter" class="chart-filter hidden">
+                                <button class="filter-btn active" data-mode="day">Day</button>
+                                <button class="filter-btn" data-mode="month">Month</button>
+                                <button class="filter-btn" data-mode="year">Year</button>
+                            </div>
+                            <div class="date-area">
+                                <input type="date" id="chartDate" value="2025-02-12"/>
+                            </div>
+                        </div>
+                        <div id="genToggle" class="gen-toggle hidden">
+                            <span class="dot"></span>
+                            <span>Generation (kWh)</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="chart-body">
+                    <canvas id="pvChart"></canvas>
+                </div>
+
+                </div>
+            </div>
+
+        </div> <!-- END right section -->
+
+    </div> <!-- END top-section -->
+
+</div>
+<!--bottom section-->
+<section class="inverter-section">
+
+  <!-- HEADER -->
+  <div class="inv-header">
+    <div class="inv-left-title">
+      <div class="inv-small"
+           style="text-decoration: underline; color:#00D5FF; font-weight:500;">
+        Inverter
+      </div>
+    </div>
+
+  <div class="inv-switch" >
+    <div>
+      <img id="invSettingsBtn"
+          src="../../Asset/settings.png"
+          style="width:18px; height:18px; cursor:pointer;" />
+      </div>
+      <div id="btnData" class="switch-btn hidden">
+        <span>&lt; Data</span>
+      </div>
+
+      <div id="btnCurve" class="switch-btn">
+        <span>Curve</span>
+        <span class="dot">&gt;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA VIEW (DEFAULT) -->
+  <div id="dataView" class="inv-card">
+    <div class="details">
+
+      <!-- LEFT DETAILS -->
+      <div class="inv-left">
+        <h4 class="inv-title">GW3300-XS</h4>
+
+        <div class="inv-row"><span>Model</span><span>GW3300-XS</span></div>
+        <div class="inv-row"><span>SN</span><span>53300SSX22BW1357</span></div>
+        <div class="inv-row"><span>Checkcode</span><span>003452</span></div>
+        <div class="inv-row"><span>Rated Power</span><span>3.3 kW</span></div>
+        <div class="inv-row"><span>Connected</span><span>05.15.2024 16:24:02</span></div>
+        <div class="inv-row"><span>Power</span><span>0.113 kW</span></div>
+        <div class="inv-row"><span>AC Voltage</span><span>226.4 V</span></div>
+        <div class="inv-row"><span>AC Current</span><span>0.7 A</span></div>
+        <div class="inv-row"><span>AC Frequency</span><span>49.64 Hz</span></div>
+      </div>
+
+      <!-- CENTER -->
+      <div class="inv-center">
+        <div class="energy-circle">
+          <div class="energy-inner">
+            <div class="energy-top">Income: 62.05 INR</div>
+            <div class="energy-value">8.2</div>
+            <div class="energy-unit">kWh</div>
+          </div>
+        </div>
+
+        <div class="inv-bottom-cards">
+          <div class="mini-card">
+            <div class="icon"><img src="../Asset/vector 12.png"></div>
+            <div>Total Generation</div>
+            <strong>6064.1 kWh</strong>
+          </div>
+
+          <div class="status-pill">Working</div>
+
+          <div class="mini-card">
+            <div class="icon"><img src="../Asset/clock2.png"></div>
+            <div>Total Hours</div>
+            <strong>6681 hours</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="inv-right">
+        <div class="inv-row"><span>Model</span><span>GW3300-XS</span></div>
+        <div class="inv-row"><span>SN</span><span>53300SSX22BW1357</span></div>
+        <div class="inv-row"><span>Checkcode</span><span>003452</span></div>
+        <div class="inv-row"><span>Rated Power</span><span>3.3 kW</span></div>
+        <div class="inv-row"><span>Connected</span><span>05.15.2024 16:24:02</span></div>
+        <div class="inv-row"><span>Power</span><span>0.113 kW</span></div>
+        <div class="inv-row"><span>AC Voltage</span><span>226.4 V</span></div>
+        <div class="inv-row"><span>AC Current</span><span>0.7 A</span></div>
+        <div class="inv-row"><span>AC Frequency</span><span>49.64 Hz</span></div>
+      </div>
+
+    </div>
+  </div>
+<!-- EDIT MODE (FULL FORM INCLUDING CENTER) -->
+<div id="editView" class="inv-card hidden">
+  <div class="inv-edit-form">
+
+    <div class="edit-grid">
+      <!-- COLUMN 1 -->
+      <div class="edit-col row-style">
+
+        <div class="edit-row">
+          <span class="edit-label">Model</span>
+          <input value="GW3300-XS">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">SN</span>
+          <input value="53300SSX22BW1357">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Checkcode</span>
+          <input value="003452">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Rated Power</span>
+          <input value="3.3 kW">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Connected</span>
+          <input value="05.15.2024 16:24:02">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Power</span>
+          <input value="0.113 kW">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Voltage</span>
+          <input value="226.4 V">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Current</span>
+          <input value="0.7 A">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Frequency</span>
+          <input value="49.64 Hz">
+        </div>
+
+      </div>
+      <!-- COLUMN 2 (CENTER DATA) -->
+      <div class="edit-col row-style">
+
+        <div class="edit-row">
+          <span class="edit-label">Model</span>
+          <input value="GW3300-XS">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">SN</span>
+          <input value="53300SSX22BW1357">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Checkcode</span>
+          <input value="003452">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Rated Power</span>
+          <input value="3.3 kW">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Connected</span>
+          <input value="05.15.2024 16:24:02">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Power</span>
+          <input value="0.113 kW">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Voltage</span>
+          <input value="226.4 V">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Current</span>
+          <input value="0.7 A">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Frequency</span>
+          <input value="49.64 Hz">
+        </div>
+
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="edit-col row-style">
+
+        <div class="edit-row">
+          <span class="edit-label">Model</span>
+          <input value="GW3300-XS">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">SN</span>
+          <input value="53300SSX22BW1357">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Checkcode</span>
+          <input value="003452">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Rated Power</span>
+          <input value="3.3 kW">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Connected</span>
+          <input value="05.15.2024 16:24:02">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">Power</span>
+          <input value="0.113 kW">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Voltage</span>
+          <input value="226.4 V">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Current</span>
+          <input value="0.7 A">
+        </div>
+
+        <div class="edit-row">
+          <span class="edit-label">AC Frequency</span>
+          <input value="49.64 Hz">
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <div class="edit-actions">
+      <button id="editCancel" class="btn-cancel">Cancel</button>
+      <button id="editSave" class="btn-save">Save</button>
+    </div>
+
+  </div>
+</div>
+
+  <!-- CURVE VIEW -->
+  <div id="curveView" class="inv-card hidden">
+    <div style=" display:flex; gap:6px; justify-content:space-between; margin-bottom:5px;">
+     <div style="display:flex; gap:6px; padding:5px;">
+         <div class="mode-switch" >
+           <!-- POWER DROPDOWN TAB -->
+            <div class="power-dropdown">
+              <button id="powerBtn" type="button" class="mode-btn active">
+                <span id="powerLabel">Power</span>
+                <span class="arrow">▾</span>
+                </button>
+  
+                 <div id="powerMenu" class="power-menu hidden">
+                  <div class="menu-item" data-value="power">Power</div>
+                  <div class="menu-item" data-value="v_mppt1">V MPPT 1</div>
+                  <div class="menu-item" data-value="i_mppt1">I MPPT 1</div>
+                  <div class="menu-item" data-value="ua">Ua</div>
+                  <div class="menu-item" data-value="iac1">I AC 1</div>
+                 </div>
+            </div>
+  
+                <!-- GENERATION & INCOME TAB -->
+            <button id="genIncomeBtn" data-tab="genIncome" class="mode-btn outline">
+                  Generation & Income
+            </button>
+         </div>
+     </div>
+        <div class="curve-right">
+            <div id="bottomTimeFilter" class="chart-filter hidden">
+              <button class="filter-btn active" data-mode="day">Day</button>
+              <button class="filter-btn" data-mode="month">Month</button>
+              <button class="filter-btn" data-mode="year">Year</button>
+            </div>
+
+            <div class="date-area">
+              <input type="date" id="bottomChartDate" />
+            </div>
+            <div id="bottomGenToggle" class="gen-toggle hidden">
+                 <span class="dot"></span>
+                 <span>Generation (kWh)</span>
+             </div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div class="chart-body">
+        <canvas id="pvChartBottom"></canvas>
+      </div>
+
+</div>
+    
+</section>
+<script src="../Scripts/activeLinks.js"></script>
+
+<script src="../Scripts/plantdetail.js"></script>
+
+</body>
+</html>

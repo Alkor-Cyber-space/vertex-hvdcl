@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alarm Message Setting</title>
+  <link rel="stylesheet" href="../../Styles/messageforowner.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- LEFT SEARCH PANEL -->
+  <aside class="left-panel">
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Please enter plant / SN / email"
+      />
+    </div>
+
+   <ul class="owner-list" id="ownerList">
+  <!-- Loaded dynamically -->
+</ul>
+
+  </aside>
+
+  <!-- RIGHT CONTENT -->
+  <main class="content">
+    <div class="container">
+      <h3>Alarm Message Setting For Owner</h3>
+
+      <div class="row">
+        <div class="label">Plant</div>
+            <input type="text" id="plantField" placeholder="Please Select Plant" readonly>
+      </div>
+
+      <div class="row">
+        <div class="label">Owner's Email</div>
+        <input type="email" class="field" id="emailField" placeholder="--" >
+      </div>
+
+      <div class="row">
+        <div class="label">Alarm Message</div>
+        <div class="field radio-group">
+          <label>
+            <input type="radio" name="alarmMessage" value="disable" checked>
+            Disable
+          </label>
+          <label>
+            <input type="radio" name="alarmMessage" value="enable">
+            Enable
+          </label>
+        </div>
+      </div>
+
+      <p class="note">
+        Note. This setting will prevent Owner from receiving alarm messages
+      </p>
+
+    <div class="buttons">
+    <button class="btn reset" type="button">Reset</button>
+    <button class="btn save" type="button" disabled>Save Changes</button>
+    </div>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="../../Scripts/alarmOwner.js"></script>
+</body>
+</html>

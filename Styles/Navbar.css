@@ -1,0 +1,327 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 7px 14px;
+    background: #fff;
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-left: 240px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    font-size: 19px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.navbar-links a span svg {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: fill 0.2s, stroke 0.2s;
+stroke: #007867 !important;
+}
+
+
+/* Logo */
+.logo-img {
+    height: 40px;
+    margin-left: 12px;
+}
+
+/* Buttons */
+.btn-lobby {
+    background: linear-gradient(to right, #00a76f, #00a79d);
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.nav-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-link.active .nav-icon-img {
+  content: url("../../Asset/trello2.png");
+   width: 25px;
+  height: 25px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.icon-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #333;
+    transition: stroke 0.2s;
+}
+
+.icon-btn:hover svg {
+    stroke: #00a896;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 53px; /* below navbar */
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 50px);
+    background: #fff;
+    border-right: 1px solid #eaeaea;
+    padding-top: 13px;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    gap: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a img {
+    width: 20px;
+    height: 20px;
+}
+
+/* ACTIVE GREEN (same for sidebar + navbar) */
+/* .sidebar a.active {
+    background: #076243;
+    color: white;
+    border-radius: 5px;
+} */
+/* ACTIVE LINK STYLE — Works 100% */
+.sidebar a.active{
+    background: #076243 !important;
+    color: #fff !important;
+}
+.sidebar a.active svg {
+    stroke: white !important;
+}
+.navbar-links a.active {
+    background: #DEFCE6 !important;
+    color: #007867 !important;
+    border-radius: 6px;
+    padding: 8px;
+}
+.navbar-links a.active svg {
+    fill: currentColor !important;
+    stroke: currentColor !important;
+}
+
+/* Notification Modal Overlay */
+.message-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.10);
+    display: none;
+    justify-content: end;
+    align-items: center;
+    z-index: 9999;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+/* Modal */
+.message-modal {
+    width: 460px;
+    height: 86vh;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e6e6e6;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.message-header {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.message-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+
+}
+
+.back-icon {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Header icons */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999999;
+    border-radius: 4px;
+}
+
+.icon-action:hover {
+    color: #0a8159; 
+}
+
+.close-btn:hover {
+    color: #d9534f;
+}
+
+.close-btn {
+    font-size: 18px;
+}
+
+
+/* Body */
+.message-body {
+    flex: 1;
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    color: #090909;
+    font-size: 15px;
+}
+
+.empty-state img {
+    width: 180px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+}
+
+/* Utility */
+.hidden {
+    display: none;
+}
+
+/* Message list */
+.message-list {
+    width: 100%;
+    overflow-y: auto;
+}
+
+/* Message item */
+.message-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+}
+
+.message-item:hover {
+    background: #f7f9f8;
+}
+
+/* Icon */
+.msg-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #eef6f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+/* Content */
+.msg-content {
+    flex: 1;
+}
+
+.msg-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.msg-desc {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin: 3px 0;
+}
+
+.msg-time {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Unread */
+.message-item.unread {
+    background: #f1faf6;
+}
+/* 
+.message-item.unread::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #0a8159;
+    border-radius: 50%;
+    position: absolute;
+    right: 16px;
+    margin-top: 6px;
+} */

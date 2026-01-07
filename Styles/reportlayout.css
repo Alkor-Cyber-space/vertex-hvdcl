@@ -1,0 +1,166 @@
+/* ===============================
+   RESET & BASE
+================================ */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin-top: 27px;
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    color: #112;
+}
+
+/* ===============================
+   HIDE MAIN APP SIDEBAR
+================================ */
+.sidebar {
+    display: none !important;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+.reports-layout {
+    display: flex;
+    height: calc(100vh - 64px);
+    width: 100%;
+}
+
+/* ===============================
+   LEFT SIDEBAR
+================================ */
+.reports-sidebar {
+    width: 250px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    border-right: 1px solid #e5e7eb;
+}
+
+/* ===============================
+   MENU BASE
+================================ */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===============================
+   MENU ITEM (NORMAL)
+================================ */
+.menu > .menu-item {
+    /* margin: 6px 10px; */
+    padding: 10px 16px;
+    /* border-radius: 8px; */
+    font-size: 14px;
+    color: #9aa4a0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.menu > .menu-item:hover {
+    background: #076243;
+    color: #ffffff;
+}
+.menu-item.active{
+    background: #076243;
+    color: #ffffff;
+
+}
+/* ===============================
+   MENU GROUP
+================================ */
+.menu-group {
+    /* margin: 6px 10px; */
+    padding: 6px 0;
+    /* border-radius: 10px; */
+    background: transparent;
+    color: #9aa4a0;
+}
+
+/* ===============================
+   ACTIVE MENU GROUP (MATCH IMAGE)
+================================ */
+.menu-group.active {
+    background: #076243;
+    color: #ffffff;
+}
+
+/* ===============================
+   GROUP TITLE
+================================ */
+.group-title {
+    display: block;
+    padding: 10px 16px 6px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Active title color */
+.menu-group.active .group-title {
+    color: #ffffff;
+}
+
+/* ===============================
+   GROUP SUB MENU
+================================ */
+.menu-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Sub menu items */
+.menu-group .menu-item {
+    padding: 6px 26px;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 2px 0;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Active sub-item (text emphasis only) */
+.menu-group .menu-item.active {
+    font-weight: 500;
+    color: #ffffff;
+    opacity: 0.95;
+}
+
+/* Hover effect inside group */
+.menu-group .menu-item:hover {
+    opacity: 0.85;
+}
+
+/* ===============================
+   RIGHT CONTENT AREA
+================================ */
+.reports-content {
+    flex: 1;
+    background: #f3f6f4;
+    padding: 12px;
+    overflow-y: auto;
+}
+
+/* Loaded content card */
+#reportContent {
+    min-height: 100%;
+}
+
+/* ===============================
+   SCROLLBAR (OPTIONAL)
+================================ */
+.reports-sidebar::-webkit-scrollbar,
+.reports-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reports-sidebar::-webkit-scrollbar-thumb,
+.reports-content::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+}

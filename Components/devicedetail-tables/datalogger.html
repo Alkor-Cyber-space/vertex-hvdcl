@@ -1,0 +1,57 @@
+<div class="table-button">
+    <button class="table active" data-target="#invTable">Inverter</button>
+    <button class="table" data-target="#replaceTable">Replacement History</button>
+</div>
+
+<!-- ================= INVERTER TABLE ================= -->
+<div id="invTable" class="table-box sub-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>SN</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Creation Date</th>
+                <th>Data Logger</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+
+        <!-- IMPORTANT!  Add ID -->
+        <tbody id="invTableBody">
+            <tr class="no-data">
+                <td colspan="8">No data</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button class="btn-next">Next</button>
+</div>
+
+<!-- ================= REPLACEMENT HISTORY TABLE ================= -->
+<div id="replaceTable" class="table-box sub-table" style="display:none;">
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Original Device</th>
+                <th>Original SN</th>
+                <th>New Device</th>
+                <th>New SN</th>
+                <th>Replacement Date</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+
+        <!-- IMPORTANT!  Add ID -->
+        <tbody id="replaceTableBody">
+            <tr class="no-data">
+                <td colspan="7">No data</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn-next">Next</button>
+</div>

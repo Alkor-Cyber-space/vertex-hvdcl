@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PV Plant Ownership</title>
+    <link rel="stylesheet" href="../Styles/pvplantdetails.css" />
+</head>
+
+<body>
+    <div class="main">
+        <div class="content">
+            <div class="panel">
+
+                <div class="pv-layout">
+
+                    <!-- LEFT FILTER SECTION -->
+                    <div class="pv-filters">
+                        <div class="filter-group">
+                            <input
+                                        type="text"
+                                        id="organizationSearch"
+                                        class="input"
+                                        placeholder="Organization code"
+                                    >
+                            <button class="search-btn">Search</button>
+                        </div>
+                        <div id="orgTags" class="org-tags"></div>
+
+                    </div>
+
+                    <!-- RIGHT CONTENT SECTION -->
+                   <div class="pv-content">
+
+    <!-- TOP FILTERS -->
+    <div class="filter-group2">
+        <div class="location-wrapper">
+            <input
+                type="text"
+                id="locationInput"
+                placeholder="Global"
+            />
+            <div id="locationDropdown" class="location-dropdown hidden"></div>
+        </div>
+
+        <div>
+            <button class="search-btn">Search</button>
+        </div>
+    </div>
+
+    <!-- NORMAL VIEW HEADER -->
+    <div class="pv-header" id="pvHeader">
+        Have PV plant : 0
+    </div>
+
+    <!-- NORMAL VIEW LIST -->
+    <div class="pv-list" id="pvList"></div>
+
+    <!-- 🔥 ALLOCATION VIEW (HIDDEN BY DEFAULT) -->
+    <div class="pv-allocation hidden" id="pvAllocation">
+
+        <div class="allocation-header">
+            <div class="alloc-title">
+                Not allocated :
+                <span id="notAllocatedCount">0</span>
+            </div>
+            <div class="alloc-title">
+                Allocated :
+                <span id="allocatedCount">0</span>
+            </div>
+        </div>
+
+        <div class="allocation-body">
+            <div class="alloc-column">
+                <div class="alloc-list" id="notAllocatedList"></div>
+            </div>
+
+            <div class="alloc-actions">
+                <button class="alloc-btn">&gt;</button>
+                <button class="alloc-btn">&lt;</button>
+            </div>
+
+            <div class="alloc-column">
+                <div class="alloc-list" id="allocatedList"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>

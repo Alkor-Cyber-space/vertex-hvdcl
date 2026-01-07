@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HVDC Role Permissions</title>
+
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../Styles/RolePermissionAdministrator.css" />
+</head>
+
+<body>
+
+<div class="main">
+    <!-- CONTENT AREA -->
+    <div class="content">
+
+        <!-- WHITE PANEL (same as AccountList) -->
+        <div class="panel">
+
+            <!-- ROLE PERMISSION CONTENT -->
+            <div class="content-area">
+                <div class="role-layout">
+
+                    <!-- LEFT PANEL -->
+                    <div class="left-panel">
+                        <p class="title">Role list</p>
+
+                        <div class="role-card">
+                            <div class="role-item active" data-role="admin">
+                                Administrator (Default)
+                            </div>
+                            <div class="role-item" data-role="browser">
+                                Browser
+                            </div>
+                            <div class="role-item" data-role="tech">
+                                Technician
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT PANEL -->
+                    <div class="right-panel">
+                        <div class="content-box" id="roleContent"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div> <!-- /.panel -->
+
+    </div> <!-- /.content -->
+</div> <!-- /.main -->
+
+</body>
+</html>

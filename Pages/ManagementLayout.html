@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations</title>
+
+    <link rel="stylesheet" href="../Styles/Navbar.css">
+    <link rel="stylesheet" href="../Styles/management.css">
+    <link rel="stylesheet" href="../Styles/RolePermissionAdministrator.css">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header-container"></div>
+<script>
+fetch("../Components/Navbar.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("header-container").innerHTML = html;
+
+        const script = document.createElement("script");
+        script.src = "../Scripts/activeLinks.js";
+        document.body.appendChild(script);
+    });
+</script>
+
+<div class="container">
+
+    <!-- TOP TABS -->
+    <div class="management-tabs">
+        <button class="tab-btn active" data-page="Organization.html">Organization Info</button>
+        <button class="tab-btn" data-page="accountList.html">Account List</button>
+        <button class="tab-btn" data-page="RolePermissionAdministrator.html">
+            Role Permissions
+        </button>
+        <button class="tab-btn" data-page="pvPlantOwnership.html">PV Plant Ownership</button>
+    </div>
+
+    <!-- SUBPAGE CONTENT -->
+    <div id="subPageContainer"></div>
+
+</div>
+
+<!-- 🔴 SCRIPT ORDER MATTERS -->
+  <script src="../Scripts/organizationinfo.js"></script>
+
+ <script src="../Scripts/accountList.js"></script>
+
+<script src="../Scripts/rolePermission.js"></script>
+<script src="../Scripts/pvplantdetails.js"></script>
+<script src="../Scripts/warranty.js"></script>
+
+<script src="../Scripts/managementTabs.js"></script>
+
+</body>
+</html>

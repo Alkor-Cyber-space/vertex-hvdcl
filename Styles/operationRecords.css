@@ -1,0 +1,254 @@
+/* RESET */
+*{
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* BODY BG */
+body{
+    background:#F1F2F4;
+     margin: 60px;
+     padding-left: 180px;
+
+}
+
+/* MAIN CONTAINER */
+.container{
+    padding:10px 18px;
+    background:#F1F2F4;
+    margin-left: 320px;
+}
+
+/* 🔍 TOP FILTERS */
+.top-row{
+    display:flex;
+    align-items:center;
+    margin-bottom:12px;
+    gap:12px;
+}
+
+.search-input{
+    padding:10px 19px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    width:250px;
+    font-size:14px;
+}
+
+.btn-search{
+    padding:10px 24px;
+    background:#0CA174;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+
+.input-group{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+}
+
+.input-group input,
+.input-group select{
+    padding:9px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:14px;
+    width: 200px;
+}
+.input-group input,
+.input-group select:focus {
+    border-color: #4CAF50;   /* green on focus */
+    outline: none;
+}
+
+
+/* 📌 FILTER TABS */
+.tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:12px;
+}
+
+.tabs button{
+    padding:8px 22px;
+    background:#c9c7c74d;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+    color: #555;
+    font-weight:600;
+}
+
+.tabs .active{
+    background:#076243;
+    color:#fff;
+}
+
+/* 📄 TABLE CARD */
+.table-box{
+    background:#fff;
+    padding:12px 18px 18px 18px; /* extra padding bottom */
+    border-radius:10px;
+    box-shadow:0px 4px 9px rgba(0,0,0,0.13);
+    width:100%;
+    
+}
+
+table{
+    width:100%;
+    overflow:hidden;
+    border-radius:8px;
+    border: 1px solid #076243 ;
+    border-collapse: separate;
+    border-spacing: 0;
+
+}
+
+thead tr{
+    background:#076243;
+    color:#fff;
+    font-size:13px;
+}
+
+th,td{
+    padding:10px 14px;
+    font-size:13px;
+    text-align:left;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #E7E7E9;
+}
+/* ⭐ DEFAULT EMPTY ROW (Perfect Rounded Bottom) */
+.default-row td{
+    font-size:13px;
+    color:#555;
+    background:#fff;
+    border:1.5px solid #0CA174;
+    border-radius:0 0 8px 8px; /* ROUNDED BOTTOM EXACT */
+}
+
+/* 🟢 SUBMIT BUTTON (INSIDE BOX, RIGHT SIDE) */
+.submit-btn{
+    margin-top:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:6px 20px;
+    border-radius:8px;
+    border:none;
+    background:linear-gradient(90deg, #00A76F 0%, #00A79D 100%);
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+    float:none;
+    margin-left:auto;     
+}
+
+.submit-btn:hover{
+    background:#088a62;
+}
+
+@media (min-width:1440px){
+    .container{
+        max-width:1400px;
+        margin:auto;
+    }
+}
+
+/* 💻 Laptops (1024px – 1439px) */
+@media (max-width:1439px){
+    .search-input{
+        width:220px;
+    }
+}
+
+/* 📗 Tablets (768px – 1023px) */
+@media (max-width:1023px){
+    .top-row{
+        flex-wrap:wrap;
+        justify-content:flex-start;
+    }
+    .search-input{
+        width:260px;
+    }
+    .tabs button{
+        padding:6px 10px;
+        font-size:12px;
+    }
+    th,td{
+        font-size:12px;
+        padding:9px 10px;
+    }
+}
+
+/* 📱 Mobile (480px – 767px) */
+@media (max-width:767px){
+    .top-row{
+        flex-direction:column;
+        gap:10px;
+        align-items:flex-start;
+    }
+    .search-input,
+    .input-group input,
+    .input-group select{
+        width:100%;
+    }
+    .input-group{
+        flex-direction:column;
+        align-items:flex-start;
+        width:100%;
+    }
+    .input-group label{
+        font-size:12px;
+        margin-bottom:3px;
+    }
+    .tabs{
+        flex-wrap:wrap;
+        gap:8px;
+    }
+    .tabs button{
+        flex:1;
+        text-align:center;
+        font-size:12px;
+    }
+    table, thead, tbody, th, td, tr{
+        font-size:11px !important;
+    }
+    th,td{
+        padding:8px 10px;
+    }
+    .submit-btn{
+        width:100%;
+        margin-left:0;
+        padding:8px 0;
+    }
+}
+
+/* 📞 Small Phones (< 480px) */
+@media (max-width:480px){
+    .search-input{
+        width:100%;
+    }
+    .tabs button{
+        font-size:10.5px;
+        padding:5px 8px;
+        border-radius:6px;
+    }
+    th,td{
+        font-size:10px !important;
+    }
+    .table-box{
+        padding:10px 10px;
+    }
+}

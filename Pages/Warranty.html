@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Warranty Page</title>
+  <link rel="stylesheet" href="../Styles/Navbar.css">
+  <link rel="stylesheet" href="../Styles/waranty.css">
+</head>
+
+<body>
+
+<div id="header-container"></div>
+
+<script>
+fetch("../Components/Navbar.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("header-container").innerHTML = html;
+    const script = document.createElement("script");
+    script.src = "../Scripts/activeLinks.js";
+    document.body.appendChild(script);
+  });
+</script>
+
+<div class="top-controls">
+  <select class="ctrl-select">
+    <option>Inverter</option>
+    <option>DataLogger</option>
+    <option>Battery</option>
+    <option>EV Charger</option>
+    <option>Box-type Transformer</option>
+  </select>
+
+  <input class="ctrl-input" placeholder="Operators, Keywords content">
+  <button class="ctrl-btn">Search</button>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Plant</th>
+        <th>Classification</th>
+        <th>Capacity</th>
+        <th>Creation Date</th>
+        <th>Warranty End Date</th>
+      </tr>
+    </thead>
+    <tbody id="warranty-table-body">
+      <tr>
+        <td colspan="5" style="text-align:center;">Loading warranty data…</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="../Scripts/warranty.js"></script>
+</body>
+</html>

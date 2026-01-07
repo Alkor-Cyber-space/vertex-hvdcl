@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Data UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Styles/dataselection2.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Main Content -->
+        <main class="main-content">
+
+
+            <div class="content-wrapper">
+
+                <!-- View: Data Selection -->
+                <div id="view-data-selection">
+                    <div class="top-tab-container">
+                        <button class="more-option-tab">More Option</button>
+                    </div>
+                    <div class="filter-card">
+                        <!-- Target Section -->
+                        <div class="filter-section">
+                            <div class="section-label">Target:</div>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item"><input type="checkbox" checked> V MPPT 1 (A)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> I MPPT 1 (A)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Ua (V)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> I AC 1 (A)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> F AC 1 (Hz)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Power (W)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Working Mode</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Temperature (*C)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> Total Generation
+                                    (kWh)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> H Total (h)</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> RSSI</label>
+                                <label class="checkbox-item"><input type="checkbox" checked> PF</label>
+                            </div>
+                        </div>
+
+                        <!-- Time Selection Section -->
+                        <div class="filter-section time-section">
+                            <div class="section-label">Time Selection:</div>
+                            <div class="controls-row">
+                                <input type="text" class="date-range-input"
+                                    value="12.06.2025 00:00:00 -- 12.06.2025 15:40:34" readonly>
+                                <div class="button-group">
+                                    <button class="btn btn-save">Save Template</button>
+                                    <button class="btn btn-export">Export</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-view-area">
+                        <div class="empty-state-message">
+                            <svg class="orange-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" />
+                            </svg>
+                            <span>Form data has been generated, please export to view.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

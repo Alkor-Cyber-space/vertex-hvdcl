@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Data Export</title>
+
+    <link rel="stylesheet" href="../../Styles/dataselection.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="main-container">
+    <div id="generated-result" class="generated-result hidden">
+        <button class="more-option-btn">More Option</button>
+
+        <div class="result-card">
+            <div class="result-row">
+                <span>Target:</span>
+                <div class="target-list" id="targetList"></div>
+            </div>
+
+            <div class="result-row">
+                <span>Time Selection:</span>
+                <span id="timeRangeText"></span>
+
+                <div class="result-actions">
+                    <button class="btn-save" >Save Template</button>
+                    <button class="btn-export">Export</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-info">
+            <i class="fa-solid fa-table"></i>
+            Form data has been generated, please export to view.
+        </div>
+    </div>
+
+    <div  id="selection-section">
+        <div class="header-section">
+       <div class="data-tabs">
+    <button class="data-tab active" data-type="plant">Plant/SN</button>
+    <button class="data-tab" data-type="location">Location</button>
+    <button class="data-tab" data-type="organization">Organization</button>
+</div>
+
+<div class="search-wrapper">
+    <div class="search-input-wrapper">
+        <i class="fa fa-search search-icon"></i>
+        <input id="data-search-input" placeholder="Select organization" />
+    </div>
+
+    <div id="data-search-dropdown" class="search-dropdown hidden">
+        <!-- dropdown content -->
+    </div>
+</div>
+
+        </div>
+        <!-- Filters -->    
+        <div class="filters-container">
+    
+            <!-- Data Type -->
+            <div class="filter-row">
+                <label class="filter-label">Data Type:</label>
+                <div class="radio-group">
+                    <label class="radio-item selected">
+                        <input type="radio" name="dataType" checked>
+                        <span class="custom-radio"></span>
+                        Real-Time Parameters
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="dataType">
+                        <span class="custom-radio"></span>
+                        Energy Analysis
+                    </label>
+                </div>
+            </div>
+    
+            <!-- Time Selection (Realtime) -->
+            <div class="filter-row" id="time-selection-realtime">
+                <label class="filter-label">Time Selection:</label>
+    
+                <div class="datetime-range">
+                    <div class="dt-input">
+                        <i class="fa-regular fa-clock"></i>
+                        <input type="datetime-local" id="startDateTime" step="1">
+                    </div>
+    
+                    <span class="separator">--</span>
+    
+                    <div class="dt-input">
+                        <i class="fa-regular fa-clock"></i>
+                        <input type="datetime-local" id="endDateTime" step="1">
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Time Selection (Energy) -->
+            <div class="filter-row hidden" id="time-selection-energy">
+                <label class="filter-label">Time Selection:</label>
+    
+                <div class="energy-time-group">
+                    <label class="radio-item">
+                        <input type="radio" name="timePeriod" value="day" checked>
+                        <span class="custom-radio"></span> Day
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="timePeriod" value="month">
+                        <span class="custom-radio"></span> Month
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="timePeriod" value="year">
+                        <span class="custom-radio"></span> Year
+                    </label>
+    
+                    <div class="date-range-inputs">
+                        <div class="date-input-box">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="date">
+                        </div>
+    
+                        <span class="range-separator">--</span>
+    
+                        <div class="date-input-box">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Output Format -->
+            <div class="filter-row">
+                <label class="filter-label">Output Format:</label>
+                <div class="radio-group">
+                    <label class="radio-item selected">
+                        <input type="radio" name="outputFormat" checked>
+                        <span class="custom-radio"></span>
+                        Excel
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="outputFormat">
+                        <span class="custom-radio"></span>
+                        Curve
+                    </label>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Main Columns -->
+        <div class="content-columns">
+    
+            <!-- Column 1 -->
+            <div class="column-card">
+                <div class="card-header">
+                    <h2>Inverter Selection</h2>
+                </div>
+    
+                <div class="card-body">
+                    <button class="action-btn-outline full-width">
+                        <i class="fa-solid fa-file-circle-plus"></i> Select the inverter
+                    </button>
+    
+                    <!-- JS will render tree here -->
+                    <div class="tree-view"></div>
+                </div>
+            </div>
+    
+            <!-- Column 2 -->
+            <div class="column-card">
+                <div class="card-header flex-between">
+                    <h2>Inverter</h2>
+                    <a href="#" class="clear-all">Clear All</a>
+                </div>
+    
+                <div class="card-body">
+                    <button class="action-btn-outline full-width">
+                        <i class="fa-solid fa-trash-can"></i> Select the Inverter
+                    </button>
+    
+                    <!-- JS will render selected items here -->
+                    <div class="selected-list"></div>
+                </div>
+            </div>
+    
+            <!-- Column 3 -->
+            <div class="column-card">
+                <div class="card-header flex-between">
+                    <h2>Indicator</h2>
+                    <div class="header-actions">
+                        <a href="#" class="select-all">Select All</a>
+                        <a href="#" class="clear-all">Clear All</a>
+                    </div>
+                </div>
+    
+                <div class="info-banner">
+                    If you want to see the curve, please select indicators not exceeding 2 units.
+                </div>
+    
+                <div class="card-body scrollable-body">
+                    <div class="checkbox-list"></div>
+                </div>
+    
+                <div class="card-footer actions-right">
+                    <button class="btn btn-secondary">Reset</button>
+                    <button class="btn btn-primary">Generate Data</button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <!-- Generated Result -->
+
+
+</div>
+<!-- SAVE TEMPLATE MODAL -->
+<div id="saveTemplateModal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>My Template</h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-row">
+                <label>Name</label>
+                <input type="text" placeholder="Template Name" />
+            </div>
+
+            <div class="form-row">
+                <label>Description</label>
+                <textarea
+                    placeholder="Please enter a description (up to 20 words can be entered)."
+                    rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-cancel" id="closeTemplateModal">Cancel</button>
+            <button class="btn-submit">Submit</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

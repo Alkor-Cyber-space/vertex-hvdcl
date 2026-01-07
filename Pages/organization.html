@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVDC Organization</title>
+
+    <!-- You MUST load shared header CSS -->
+    <link rel="stylesheet" href="../Styles/organization.css">
+</head>
+
+<body>
+    <div class="organization-area">
+        <div class="search-bar">
+            <input type="text" placeholder="Organization code" />
+            <button class="btn-search">Search</button>
+            <div class="action-buttons">
+                <button class="btn" id="btnAddOrganization">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_6377_7851)">
+                    <path d="M13.0001 25.0706C19.667 25.0706 25.0716 19.666 25.0716 12.9992C25.0716 6.3323 19.667 0.927734 13.0001 0.927734C6.33327 0.927734 0.928711 6.3323 0.928711 12.9992C0.928711 19.666 6.33327 25.0706 13.0001 25.0706Z" stroke="#076243" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13 7.42773V18.5706" stroke="#076243" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7.42871 13H18.5716" stroke="#076243" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_6377_7851">
+                    <rect width="26" height="26" fill="white"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                </button>
+                <button class="btn" id="btnDeleteOrganization">
+
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_6377_7857)">
+                    <path d="M21.3569 10.2129L19.4997 25.07H6.49972L4.64258 10.2129" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.85693 6.5H24.1426" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.28271 5.96063V2.74777C8.28271 2.25522 8.47838 1.78285 8.82666 1.43457C9.17494 1.08629 9.64731 0.890625 10.1399 0.890625H15.7113C16.2038 0.890625 16.6762 1.08629 17.0245 1.43457C17.3728 1.78285 17.5684 2.25522 17.5684 2.74777V6.46205" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_6377_7857">
+                    <rect width="26" height="26" fill="white"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                </button>
+            </div>
+         </div>
+        </div>
+      <div class="organization-content">
+           <div class="side">
+                 <div class="organization-list" id="organizationList">
+                <!-- JS will render organizations here -->
+            </div>
+           </div>
+       <div class="form-card">
+    <div class="form-content">
+
+        <div class="form-group">
+            <label>Organization</label>
+            <input type="text" id="orgName" placeholder="Enter organization name">
+        </div>
+
+        <div class="form-group">
+            <label>Organization Code</label>
+            <div class="inline-group">
+                <input type="text" id="orgCode" placeholder="Enter organization code">
+                <button class="change-btn">Change</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Representative</label>
+            <div class="inline-group2">
+                <input type="text" id="repName" placeholder="Enter name">
+                <span>/</span>
+                <input type="text" id="repCode" placeholder="Enter">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="orgEmail" placeholder="Enter email address">
+        </div>
+
+    </div>
+
+    <!-- ✅ ACTION BUTTONS -->
+    <div class="form-actions">
+        <button type="button" class="btn-cancel">Cancel</button>
+<button type="submit" class="btn-submit" id="btnSubmitOrg">Submit</button>
+    </div>
+</div>
+
+
+      </div>
+    </div>
+    <div class="modal-overlay" id="deleteConfirmModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>Note</span>
+    </div>
+     <p>Are you sure you want to delete this organization?</p>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" id="cancelDelete">Cancel</button>
+      <button class="btn-danger" id="confirmDelete">Delete</button>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

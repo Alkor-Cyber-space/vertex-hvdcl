@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 900px;
+  /* margin: 10px ; */
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #5F5F5F;
+}
+
+.info {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a9b5f;
+  margin-bottom: 6px;
+}
+
+.checkbox-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.checkbox-group input {
+  margin-right: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.message-row {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.message-label {
+  width: 300px;
+  font-size: 14px;
+  color: #555;
+}
+
+.radio-group label {
+  margin-right: 25px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.radio-group input {
+  margin-right: 6px;
+}
+.radio-group input[type="radio"] {
+    width: 14px;
+    height: 14px;
+    accent-color: #007867;
+}
+.note {
+  font-size: 13px;
+  color: #1a9b5f;
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 6px 26px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reset {
+  background: #ffffff;
+  border: 1px solid #01A777;
+  color: #01A777;
+}
+
+.save {
+  background: linear-gradient(to right, #00A76F, #00A79D);
+  border: 1px solid #2db7a3;
+  color: #ffffff;
+}

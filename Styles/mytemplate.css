@@ -1,0 +1,210 @@
+/* TABLE CONTAINER */
+.template-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* TABLE */
+.template-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+.template-table thead {
+    background-color: #0A8159;
+}
+
+.template-table thead th {
+    color: #ffffff;
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* BODY */
+.template-table tbody tr {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.template-table tbody tr:hover {
+    background: #f8faf9;
+}
+
+.template-table tbody td {
+    padding: 5px 16px;
+    color: #333;
+    white-space: nowrap;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* EMPTY STATE */
+.empty-row td {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-style: italic;
+}
+
+/* BUTTONS */
+.btn-view {
+    background: #00a79d;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.btn-view:hover {
+    background: #008f86;
+}
+
+.btn-delete:hover {
+    background: #cf3f30;
+}
+
+.pagination-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.pagination-bar button {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.pagination-bar button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-bar span {
+    align-self: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    border-radius: 15px;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: 10px;
+    width: 420px;
+    overflow: hidden
+}
+
+.modal-body {
+    padding: 5px 10px;
+
+}
+
+.modal-card.small {
+    width: 360px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0A8159;
+    color: white;
+    padding: 5px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    gap: 6px;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 17px;
+    border-radius: 8px;
+    font-size: 15px;
+
+}
+
+.btn-secondary {
+    padding: 5px 17px;
+    background: #0A8159;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .template-table thead {
+        display: none;
+    }
+
+    .template-table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+
+    .template-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .template-table tbody td::before {
+        content: attr(data-label);
+        font-weight: 500;
+        color: #555;
+    }
+}

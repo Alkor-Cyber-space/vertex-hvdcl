@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Panel</title>
+    <link rel="stylesheet" href="../Styles/Navbar.css">
+    <link rel="stylesheet" href="../Styles/operationRecords.css">
+</head>
+
+<body>
+     <div id="header-container"></div>
+
+    <script>
+        // Load shared header component
+        fetch("../Components/Navbar.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header-container").innerHTML = html;
+
+                // Load active link script AFTER header loads
+                const script = document.createElement("script");
+                script.src = "../Scripts/activeLinks.js";
+                document.body.appendChild(script);
+            });
+    </script>
+
+    <div class="container">
+
+        <!-- 🔍 SEARCH SECTION -->
+        <div class="top-row">
+           <div class="input-group">
+                <input type="text" placeholder="Operators, Keywords content" class="search-input">
+                <button class="btn-search">Search</button>
+           </div>
+
+            <div class="input-group">
+                <label>Operation Time :</label>
+                <input type="date">
+                <input type="date">
+            </div>
+
+            <div class="input-group">
+                <label>Operation Time :</label>
+                <select>
+                    <option>All</option>
+                    <option>Add</option>
+                    <option>Delete</option>
+                    <option>Modify</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 📌 FILTER TABS -->
+        <div class="tabs">
+            <button class="active">Today</button>
+            <button>Last 7 days</button>
+            <button>Last 1 month</button>
+            <button>Last 3 months</button>
+        </div>
+
+        <!-- 📄 TABLE CARD -->
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operation Type</th>
+                        <th>Operation Summary</th>
+                        <th>Operator</th>
+                        <th>Operation Time</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+
+                <tbody id="operationBody">
+                    
+                </tbody>
+            </table>
+
+            <button class="submit-btn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // Make tabs active on click
+        const tabs = document.querySelectorAll(".tabs button");
+
+        tabs.forEach(btn => {
+            btn.addEventListener("click", () => {
+                tabs.forEach(b => b.classList.remove("active")); // remove active from all
+                btn.classList.add("active"); // add active to clicked one
+            });
+        });
+
+
+    </script>
+    <script >
+        /*******************************
+🔰 Dummy API Data (For Example)
+********************************/
+
+const dataToday = [
+    { type: "Login", summary: "User logged in", operator: "John", time: "10:15 AM", action: "View" },
+    { type: "Update", summary: "Updated product price", operator: "Sarah", time: "09:40 AM", action: "Details" }
+];
+
+const data7Days = [
+    { type: "Delete", summary: "Removed invoice #45", operator: "Admin", time: "3 days ago", action: "Undo" },
+    { type: "Create", summary: "Added new customer", operator: "Ravi", time: "5 days ago", action: "View" },
+    { type: "Edit", summary: "Modified address info", operator: "Amir", time: "6 days ago", action: "Details" }
+];
+
+const data1Month = [
+    { type: "Modify", summary: "Shipment delay updated", operator: "Karthik", time: "18 days ago", action: "View" }
+];
+
+const data3Months = []; // empty → will show default message
+
+/*******************************
+🧮 Render Function (map)
+********************************/
+function renderOperations(data) {
+    const tableBody = document.getElementById("operationBody");
+
+    if (!data || data.length === 0) {
+        tableBody.innerHTML = `
+            <tr class="default-row">
+                <td colspan="5">Please add owner information</td>
+            </tr>
+        `;
+        return;
+    }
+
+    tableBody.innerHTML = data.map(op => `
+        <tr>
+            <td>${op.type}</td>
+            <td>${op.summary}</td>
+            <td>${op.operator}</td>
+            <td>${op.time}</td>
+            <td style="color:#0CA174;font-weight:600;cursor:pointer;">${op.action}</td>
+        </tr>
+    `).join("");
+}
+
+/*******************************
+🎯 Tab Button Actions (Click + Active Class)
+********************************/
+
+const tabButtons = document.querySelectorAll(".tabs button");
+
+tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+
+        // Remove active class from all tabs
+        tabButtons.forEach(b => b.classList.remove("active"));
+
+        // Add active class to clicked tab
+        btn.classList.add("active");
+
+        // Check text and show content using ternary logic
+        const label = btn.textContent.trim();
+
+        label === "Today" ? renderOperations(dataToday)
+        : label === "Last 7 days" ? renderOperations(data7Days)
+        : label === "Last 1 month" ? renderOperations(data1Month)
+        : renderOperations(data3Months);
+    });
+});
+
+/*******************************
+🔥 Load default data on page load
+********************************/
+renderOperations(dataToday);
+
+    </script>
+</body>
+
+</html>

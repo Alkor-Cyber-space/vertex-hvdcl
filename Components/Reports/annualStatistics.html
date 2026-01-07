@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Annual Generation Statistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../Styles/monthlyStatistics.css">
+</head>
+
+<body >
+  <div id="statisticsPage" data-page="annual"></div>
+
+  <div class="filter-bar">
+    <div class="filter-inputs">
+
+      <div class="input-group location-search">
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            id="filterLocation"
+            placeholder="Location"
+            oninput="onLocationSearch(this.value)"
+          >
+        </div>
+        <div id="locationResults" class="search-results hidden"></div>
+      </div>
+
+      <div class="input-group select-group">
+        <select id="filterPlant">
+          <option value="">Select organization</option>
+          <option value="org1">Vertex 01</option>
+          <option value="org2">Vertex 02</option>
+          <option value="org3">Vertex 03</option>
+        </select>
+      </div>
+
+      <div class="input-group month-input">
+        <input type="number" id="filterYear" value="2025" />
+        <span class="month-placeholder">Year</span>
+      </div>
+
+    </div>
+
+    <div class="filter-actions">
+      <button id="btnGenerate" class="btn-primary">Generate Report</button>
+      <button id="btnExport" class="btn-secondary btn-disabled" disabled>
+        Export
+      </button>
+      <button class="btn-primary" onclick="onExpandClick()">⤢</button>
+    </div>
+  </div>
+
+  <div class="card-container">
+    <h3 id="reportTitle">2025 Generation Statistics</h3>
+    <p id="totalPlants">Total Plants: 0</p>
+
+    <div class="table-wrapper">
+      <table class="gen-table">
+        <thead>
+          <tr class="group-header">
+            <th colspan="1">Owner Info</th>
+            <th colspan="3">Plant Info</th>
+            <th colspan="3">Generation (kWh)</th>
+          </tr>
+          <tr class="column-header">
+            <th>Email</th>
+            <th>Name</th>
+            <th>Capacity (kW)</th>
+            <th>Location</th>
+            <th>Yearly Total</th>
+            <th>Monthly Average</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="reportBody">
+          <tr>
+            <td colspan="7">No data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-footer">
+  <div id="summaryPagination"></div>
+</div>
+
+  </div>
+
+  <!-- ================= EXPAND OVERLAY ================= -->
+  <div id="expandOverlay" class="expand-overlay hidden">
+
+  <div class="expand-header">
+    <h3>Annual Detailed Statistics</h3>
+    <button class="close-btn" onclick="closeExpand()">✕</button>
+  </div>
+
+  <div class="expand-body">
+    <div class="table-scroll">
+      <table class="gen-table expanded" id="expandedTable"></table>
+    </div>
+
+    <div class="table-pagination" id="expandedPagination"></div>
+  </div>
+
+</div>
+
+</body>
+</html>

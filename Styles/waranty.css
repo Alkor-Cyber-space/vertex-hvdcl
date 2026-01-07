@@ -1,0 +1,201 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  background: #F2F2F2;
+  min-height: 100vh;
+  margin: 68px;
+  padding-left: 170px;
+}
+
+/* ⭐ TOP CONTROL BAR */
+.top-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Dropdown */
+.ctrl-select {
+  height: 32px;
+  border: 1px solid #D9D9D9;
+  border-radius: 7px;
+  padding: 5px 14px;
+  font-size: 14px;
+  width: 190px;
+  color: #0F0E0E99;
+  outline: none;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Keyword Input */
+.ctrl-input {
+  width: 230px;
+  height: 32px;
+  padding: 5px;
+  border: 1px solid #D9D9D9;
+  border-radius: 7px;
+  font-size: 14px;
+  outline: none;
+}
+
+
+/* Search Button */
+.ctrl-btn {
+  height: 32px;
+    background:linear-gradient(90deg, #00A76F 0%, #00A79D 100%);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 0 25px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.ctrl-btn:hover {
+  background: #00875C;
+}
+.content-area {
+    margin-top: 70px;
+    margin-left: 220px;
+    width: calc(100% - 220px);
+
+}
+
+/* 📌 LARGE CONTENT BOX */
+.table-container {
+    margin: 12px 20px 0 20px;
+
+    background: #fff;
+    border-radius: 15px;
+    padding: 0;
+    overflow: hidden;
+    /* IMPORTANT for rounded corners */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    /* border: 3px solid #0b7d4a;  */
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: separate;
+    /* MUST use separate */
+    border-spacing: 0;
+    /* remove gaps */
+}
+
+/* HEADER */
+thead tr {
+    background: #0b7d4a;
+    color: #fff;
+    margin-left: 13px;
+
+}
+
+th {
+    padding: 8px 20px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* ROUNDED CORNERS FOR TABLE HEADER */
+thead tr th:first-child {
+    border-top-left-radius: 16px;
+}
+
+thead tr th:last-child {
+    border-top-right-radius: 16px;
+}
+
+/* ROWS */
+tbody tr td {
+    padding: 8px 18px;
+    font-size: 14px;
+    color: #333;
+
+}
+
+tbody td {
+    margin-left: 22px;
+}
+
+/* ALTERNATING ROW COLORS */
+tbody tr:nth-child(odd) {
+    background: #E7E7E9;
+}
+/* Warranty date states */
+/* Warranty status colors */
+
+.warranty-date.expired {
+  color: #d32f2f;   /* 🔴 Strong red → Expired / Action required */
+  font-weight: 600;
+}
+
+.warranty-date.expiring-soon {
+  color: #f57c00;   /* 🟠 Orange → Warning / Attention */
+  font-weight: 600;
+}
+
+.warranty-date.normal {
+  color: #2e7d32;   /* 🟢 Green → Healthy / OK */
+  font-weight: 500;
+}
+/* PAGINATION */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+}
+
+.next-btn {
+    background: linear-gradient(to left, #00A79D, #00A76F);
+    border: none;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+.next-btn:hover {
+    background: linear-gradient(to left, #007f6e, #007f85);
+}
+/* 📄 FLOATING SMALL CARD */
+.floating-card {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 180px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 12px;
+  color: #444;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .top-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .ctrl-btn {
+      width: 100%;
+  }
+
+  .floating-card {
+      width: 150px;
+      right: 10px;
+      bottom: 10px;
+  }
+}

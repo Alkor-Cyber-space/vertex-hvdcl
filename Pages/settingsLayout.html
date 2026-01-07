@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <link rel="stylesheet" href="../Styles/Navbar.css">
+  <link rel="stylesheet" href="../Styles/settingslayout.css">
+</head>
+
+<body>
+<!--  TOP NAVBAR -->
+<div id="header-container"></div>
+<script>
+  fetch("../Components/Navbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header-container").innerHTML = html;
+    });
+</script>
+
+<!-- SETTINGS LAYOUT -->
+<div class="settings-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="settings-sidebar">
+    <ul class="menu">
+
+      <!-- MESSAGE -->
+      <li class="menu-group active">
+        <span class="group-title">Message</span>
+        <ul>
+          <li class="menu-item active" data-page="myMessage.html">
+            My Message
+          </li>
+          <li class="menu-item" data-page="messageForOwner.html">
+            For Owner
+          </li>
+        </ul>
+      </li>
+
+      <!-- SYSTEM SETTING -->
+      <li class="menu-group">
+        <span class="group-title">System Setting</span>
+        <ul>
+          <li class="menu-item" data-page="systemSettings.html">
+            System
+          </li>
+          <li class="menu-item" data-page="logo.html">
+            Logo
+          </li>
+        </ul>
+      </li>
+
+      <!-- MY ACCOUNT -->
+      <li class="menu-item" data-page="myAccount.html">
+        My Account
+      </li>
+
+    </ul>
+  </aside>
+
+  <!--  RIGHT CONTENT -->
+  <main class="settings-content">
+    <div id="settingsContent">
+      <!-- Pages load here dynamically -->
+    </div>
+  </main>
+
+</div>
+
+<script src="../Scripts/settingslayout.js"></script>
+<script src="../Scripts/activelinks.js"></script>
+<script src="../Scripts/myaccount.js"></script>
+<script src="../Scripts/logoUpload.js"></script>
+
+</body>
+</html>

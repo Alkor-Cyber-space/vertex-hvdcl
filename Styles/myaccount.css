@@ -1,0 +1,106 @@
+
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    height: 100%;
+}
+
+body{
+    margin:0;
+    font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background:var(--page-bg);
+    color:var(--text);
+}
+
+/* .settings-page{
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-start;
+} */
+
+/* ================================
+   MY ACCOUNT PAGE
+================================ */
+
+.account-container {
+  max-width: 900px;
+}
+
+.account-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+}
+
+.account-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 80px;
+  align-items: center;
+  padding: 14px 0;
+  /* border-bottom: 1px solid #eeeeee; */
+}
+
+.account-row:last-child {
+  border-bottom: none;
+}
+
+.account-label {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+}
+.account-value input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  font-size: 14px;
+  color: #555;
+  outline: none;
+}
+
+.account-value input:enabled {
+  border-bottom: 1px solid #0a8159;
+  color: #000;
+}
+
+
+
+.account-action {
+  text-align: right;
+  font-size: 14px;
+  color: #00A76F;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.account-action:hover {
+  text-decoration: underline;
+}
+
+.account-note {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #5F5F5F;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .account-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .account-action {
+    text-align: left;
+  }
+}

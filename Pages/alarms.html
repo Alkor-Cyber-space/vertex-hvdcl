@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarms</title>
+
+    <link rel="stylesheet" href="../styles/Navbar.css">
+    <link rel="stylesheet" href="../styles/hvdcl.css">
+
+    <style>
+        .sidebar {
+            display: none !important;
+        }
+
+        .main-content,
+        .container {
+            margin-left: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div id="header-container"></div>
+<script>
+    fetch("../Components/Navbar.html")
+        .then(res => res.text())
+        .then(html => document.getElementById("header-container").innerHTML = html);
+</script>
+
+<!-- Main Content -->
+<div class="container">
+
+    <!-- Top Filters -->
+   <div class="filters-top">
+            <div class="filter-group">
+                <img class="select-icon" src="../Asset/location.png" />
+                <input id="locationInput" class="input"  />
+                <div id="locationDropdown" class="location-dropdown hidden"></div>
+            </div>
+
+            <div class="filter-group">
+                <img class="select-icon" src="../Asset/grid.png" alt="Global Icon" />
+                <select id="org-code-filter">
+                    <option value="">Organization Code</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <img class="select-icon" src="../Asset/bolt.png" alt="Global Icon" />
+                <input class="input" type="text" id="search-input" placeholder="Please enter plant / SN / email">
+            </div>
+            <button class="btn-search" onclick="searchPlants()">Search</button>
+        </div>
+
+    <!-- Bottom Filters -->
+    <div class="filters-bottom">
+
+        <select id="filter-status" class="filter-item">
+            <option value="">All</option>
+            <option value="Happening">Happening</option>
+            <option value="Recovered">Recovered</option>
+        </select>
+
+        <select id="filter-classification" class="filter-item">
+            <option value="">All</option>
+            <option value="Operating Condition L...">Operating Condition L...</option>
+            <option value="Production Events">Production Events</option>
+            <option value="Communication status">Communication status</option>
+            <option value="System Information">System Information</option>
+        </select>
+
+        <select id="filter-device" class="filter-item">
+            <option value="">Device Type</option>
+            <option value="Inverter">Inverter</option>
+            <option value="Meter">Meter</option>
+            <option value="UPS">UPS</option>
+            <option value="EMS">EMS</option>
+        </select>
+
+        <select id="filter-level" class="filter-item">
+            <option value="">Fault Level</option>
+            <option value="Prompt">Prompt</option>
+            <option value="Alarm">Alarm</option>
+            <option value="Fault">Fault</option>
+        </select>
+
+        <button id="btn-filter-confirm" class="btn-confirm">Confirm</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Plant</th>
+                    <th>SN</th>
+                    <th>Inverter</th>
+                    <th>Device Type</th>
+                    <th>Alarm</th>
+                    <th>Fault level</th>
+                    <th>Fault Classification</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                    <th>Details</th>
+                    <th>⭐</th>
+                </tr>
+            </thead>
+
+            <tbody id="alarmTableBody"></tbody>
+        </table>
+
+        <div class="table-footer">
+            <div id="pagination" class="pagination"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Scripts (CORRECT ORDER) -->
+<script src="../Scripts/activeLinks.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../Scripts/alarmsExpand.js"></script>
+
+<script>
+    // ✅ REQUIRED BOOTSTRAP
+    document.addEventListener("DOMContentLoaded", () => {
+        initAlarmTable();
+    });
+</script>
+
+</body>
+</html>

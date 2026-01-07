@@ -1,0 +1,212 @@
+:root {
+    --primary-green: #00bfa5;
+    --alert-bg: #10ac84;
+    /* Slightly darker green for the alert box */
+    --text-dark: #333333;
+    --text-light: #666666;
+    --border-color: #e0e0e0;
+    --input-border: #cccccc;
+    --focus-blue: #2196f3;
+    --bg-light: #f5f5f5;
+    /* Light grey background for the whole page */
+    --card-border: #2196f3;
+    /* Blue border for the main card */
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.system-setting-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Info Alert */
+.info-alert {
+    background-color: #01A881;
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 19px;
+    line-height: 1.3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-icon {
+    flex-shrink: 0;
+}
+
+/* Settings Card */
+.settings-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    /* Slightly squarish as per image */
+    padding: 25px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Sections */
+.section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 2px;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-light);
+    margin-left: 5px;
+}
+
+/* Inputs & Forms */
+label {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-right: 10px;
+}
+
+input[type="text"],
+select {
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 4px 19px;
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: var(--focus-blue);
+}
+
+/* Profit Ratio Row */
+.input-group-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ratio-input {
+    width: 120px;
+}
+
+.select-wrapper select {
+    width: 120px;
+    cursor: pointer;
+}
+
+/* Environmental Grid */
+.env-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.env-label {
+    font-size: 14px;
+    color: var(--text-light);
+    width: 250px;
+    /* Fixed width for the label column to align */
+    padding-top: 8px;
+    /* Align with the first input */
+}
+
+.env-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 15px;
+}
+
+.env-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.unit-prefix {
+    font-size: 14px;
+    color: var(--text-light);
+    min-width: 50px;
+    text-align: right;
+}
+
+.env-row input {
+    width: 100px;
+}
+
+.unit-suffix {
+    font-size: 14px;
+    color: var(--text-dark);
+    /* Slightly darker for importance */
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+button {
+    padding: 8px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: 1px solid transparent;
+}
+
+.btn-reset {
+    background-color: transparent;
+    color: #01A777;
+    border: 1px solid var(--alert-bg);
+}
+
+.btn-save {
+    background: linear-gradient(to right, #00A76F, #00A79D);
+    color: var(--white);
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .env-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .env-label {
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .input-group-row {
+        flex-wrap: wrap;
+    }
+}

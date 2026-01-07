@@ -1,0 +1,44 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations</title>
+    <link rel="stylesheet" href="../../Styles/Navbar.css">
+    <link rel="stylesheet" href="../../Styles/org.css">
+</head>
+
+<body>
+
+  <div id="header-container"></div>
+     <script>
+        fetch("../../Components/Navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header-container").innerHTML = html;
+
+                // Load active script AFTER header loads
+                const script = document.createElement("script");
+                script.src = "../../Scripts/activeLinks.js";
+                document.body.appendChild(script);
+            });
+    </script>
+
+<div class="container">
+
+    <!-- TOP TABS -->
+    <div class="management-tabs">
+        <button class="tab-btn active" data-page="organizationInfo.html">Organization Info</button>
+        <button class="tab-btn" data-page="accountList.html">Account List</button>
+        <button class="tab-btn" data-page="rolePermissions.html">Role Permissions</button>
+        <button class="tab-btn" data-page="pvPlantOwnership.html">PV Plant Ownership</button>
+    </div>
+
+    <!-- SUBPAGE CONTENT LOADS HERE -->
+    <div id="subPageContainer"></div>
+
+</div>
+
+<script src="../../Scripts/managementTabs.js"></script>
+</body>
+</html> {% endcomment %}

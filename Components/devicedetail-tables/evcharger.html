@@ -1,0 +1,194 @@
+<div>
+    <div class="table-button">
+        <button class="table active" data-target="#evTable">Inverter</button>
+        <button class="table" data-target="#evReplace">Replacement History</button>
+    </div>
+</div>
+
+<!-- ========== TAB 1 : EV CHARGER ========== -->
+<div id="evTable" class="table-box sub-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>SN</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Creation Date</th>
+                <th>Data Logger</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+
+        <!-- IMPORTANT!  Add ID -->
+        <tbody id="invTableBody">
+            <tr class="no-data">
+                <td colspan="8">No data</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button class="btn-next">Next</button>
+</div>
+
+
+<!-- ========== TAB 2 : REPLACEMENT HISTORY ========== -->
+<div id="evReplace" class="table-box sub-table" style="display:none;">
+
+    <!-- Table 1 -->
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Original Device</th>
+                <th>Original S/N</th>
+                <th>New Device</th>
+                <th>New S/N</th>
+                <th>Replacement Date</th>
+                <th>Note</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="no-data">
+                <td colspan="8">No data</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="8" style="text-align: right; padding: 10px; border-top: #040404ff 1px solid;">
+                    <button class="btn-next">Next</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- RFID label row -->
+    <div style="
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding:14px;
+        border-radius:8px 8px 0 0;
+        margin-bottom: -7px;
+        position: relative;">
+
+        <div class="rfid-label" style="display:flex; align-items:center; gap:5px;">
+            <span>RFID Card</span>
+            <img id="rfidInfoBtn" src="../../Asset/Question.png" style="cursor:pointer;">
+        </div>
+
+        <button class="next-btn" style="font-weight: 600;">Add RFID Card</button>
+    </div>
+
+    <!-- Tooltip outside flex container -->
+    <div id="rfidTooltip" class="tooltip-box">
+        The RFID Card function is only available in G2 EV Charger.
+        The RFID Card management requires the EV Charger to be online,
+        otherwise it will fail.
+    </div>
+
+    <!-- Table 2 -->
+   <table class="main-table rfid-table">
+         <thead style="padding:13px;">
+             <tr >
+                    <th>No</th>
+                    <th>RFID Card Name</th>
+                    <th>RFID Card No.</th>
+                    <th>RFID Card No.</th>
+                    <th>Operation</th>
+            </tr>
+        </thead>
+    
+            <tbody>
+                <tr class="no-data">
+                    <td colspan="5">No data</td>
+                </tr>
+            </tbody>
+    
+            <tfoot>
+                <tr>
+                    <td colspan="5" style="text-align: right; padding: 10px; border-top: #040404ff 1px solid;">
+                        <button class="btn-next">Next</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+</div>
+<!-- ========= RFID MODAL ========= -->
+<div id="rfidModal" class="modal-overlay">
+   <div class="modal-box">
+
+    <div class="modal-header">
+        <p>Add RFID Card</p>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="form-row">
+            <label>RFID Card Name</label>
+            <select class="input-field">
+                <option>Please Select</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>RFID Card No.</label>
+            <select class="input-field">
+                <option>Please Select</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>Related EV</label>
+            <select class="input-field">
+                <option>Please Select</option>
+            </select>
+        </div>
+
+        <p class="form-row" style="font-size: 14px; line-height: 1.5;
+">
+            * The RFID Card function is only available in G2 EV Charger.  
+            The RFID Card management requires the EV Charger to be online, otherwise it will fail.
+        </p>
+
+        <div class="form-row">
+            <label>Set as Default Card</label>
+            <select class="input-field">
+                <option>Please Select</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button id="rfidCancel" class="cancel-btn">Cancel</button>
+        <button id="rfidSubmit" class="next-btn">Submit</button>
+    </div>
+
+</div>
+
+</div>
+
+<!-- ========= TOOLTIP SCRIPT (run after HTML loads) ========= -->
+<style>
+.rfid-table th {
+    padding: 12px 13px;
+    
+}
+
+.rfid-table td {
+    padding: 13px;
+}
+
+.rfid-table .no-data td {
+    padding: 20px 0;
+    text-align: center;
+}
+</style>

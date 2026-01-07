@@ -1,0 +1,679 @@
+body {
+    background: #f3f4f4;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: #1f2937;
+}
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.filter-inputs {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+}
+
+.input-group {
+    flex: 1;
+    position: relative;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+.search-bar input {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px 0 36px; 
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #0a8159;
+}
+
+/* SEARCH ICON */
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.location-search {
+    position: relative;
+}
+
+.search-results {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    z-index: 20;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.search-results.hidden {
+    display: none;
+}
+
+.search-results div {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-results div:hover {
+    background: #f3f4f6;
+}
+
+/* ---------------- SELECT ---------------- */
+.select-group select {
+    width: 100%;
+    height: 38px;
+    padding: 0 36px 0 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    background-color: #fff;
+    color: #374151;
+    appearance: none;
+    cursor: pointer;
+}
+
+.select-group select:focus {
+    outline: none;
+    border-color: #0a8159;
+}
+
+/* DROPDOWN ARROW (ONLY FOR SELECT) */
+.select-group::after {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+
+/* SELECT STYLING (same as input) */
+.filter-inputs select {
+    width: 100%;
+    height: 38px;
+    padding: 0 36px 0 12px; /* space for arrow */
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    background-color: #fff;
+    color: #374151;
+    appearance: none;           /* remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+/* Focus state */
+.filter-inputs select:focus {
+    outline: none;
+    border-color: #0a8159;
+}
+
+/* Custom dropdown arrow */
+.input-group {
+    position: relative;
+}
+
+.input-group::after {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: #0a8159;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background: #086c4a;
+}
+.btn-secondary {
+    background: #e5e7eb;
+    color: #9ca3af;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: not-allowed;      /* ✅ FIX */
+    white-space: nowrap;
+}
+
+/* Export disabled (default) */
+.btn-disabled {
+  background: #e5e7eb !important;   /* grey */
+  color: #9ca3af !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Export enabled (green) */
+.btn-export-active {
+  background: #0a8159 !important;   /* SAME GREEN AS GENERATE */
+  color: #ffffff !important;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* EXPAND BUTTON (ICON) */
+.filter-actions .expand-btn {
+    background: #0a8159;
+    color: #fff;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filter-actions .expand-btn:hover {
+    background: #086c4a;
+}
+
+/* month */
+/* MONTH INPUT PLACEHOLDER FIX */
+.month-input {
+    position: relative;
+}
+
+.month-input input {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    background: #fff;
+}
+
+/* Fake placeholder text */
+.month-placeholder {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #464749;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+/* Show fake placeholder when empty */
+.month-input input:placeholder-shown + .month-placeholder,
+.month-input input:not([value]) + .month-placeholder {
+  display: block;
+}
+
+/* Hide fake placeholder when month selected */
+.month-input input[value] + .month-placeholder {
+  display: none;
+}
+
+/* Also hide when focused */
+.month-input input:focus + .month-placeholder {
+  display: none;
+}
+/* ===============================
+   MONTH INPUT – FAKE PLACEHOLDER
+=============================== */
+
+/* Show placeholder when empty */
+.month-input input:not([value]) + .month-placeholder {
+  display: block;
+}
+
+/* Hide placeholder when value exists */
+.month-input input[value] + .month-placeholder {
+  display: none;
+}
+
+/* Hide on focus */
+.month-input input:focus + .month-placeholder {
+  display: none;
+}
+/* ===============================
+   REMOVE NATIVE MONTH PLACEHOLDER
+=============================== */
+
+/* Hide native month text */
+input[type="month"]::-webkit-datetime-edit {
+  color: transparent;
+}
+
+/* Show text when value selected */
+input[type="month"][value]::-webkit-datetime-edit {
+  color: #374151;
+}
+
+input[type="month"] {
+  color: transparent;
+}
+
+input[type="month"][value] {
+  color: #374151;
+}
+
+
+#reportTitle {
+    text-align: center;
+    margin: 1px 0 2px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#totalPlants {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.table-wrapper {
+    position: relative;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;           
+    margin-top: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    background: #fff;
+}
+
+
+.gen-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.gen-table thead .group-header th {
+    background: #0a8159;
+    color: #fff;
+    padding: 10px;
+    border-right: 1px solid rgba(255,255,255,0.35);
+}
+.gen-table thead .group-header th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.gen-table thead .group-header th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.gen-table thead .column-header th {
+    background: #0a8159;
+    color: #fff;
+    padding: 8px;
+    font-size: 12px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-right: 1px solid rgba(255,255,255,0.25);
+}
+
+.gen-table thead .column-header th:last-child {
+    border-right: none;
+}
+
+.gen-table td {
+    padding: 9px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #7F7F7F;
+    
+}
+.gen-table td:last-child{
+    border-right: 1px solid #e5e7eb;
+}
+
+.gen-table tbody tr:nth-child(even) {
+    background: #f3f4f6;
+}
+.table-footer {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.btn-next {
+    margin-top: 16px;
+    background: #0a8159;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* ===============================
+   SUMMARY TABLE PAGINATION
+================================ */
+.summary-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 12px;
+    padding: 12px 0;
+    margin-top: 10px;
+}
+
+/* Prev / Next buttons */
+.summary-pagination button {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #0A8159;
+    background: white;
+    color: #0A8159;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.summary-pagination button:hover:not(:disabled) {
+    background: #0A8159;
+    color: #fff;
+}
+
+/* Disabled state */
+.summary-pagination button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Page info text */
+.summary-pagination span {
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+}
+
+.expand-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: #0a8159;
+    color: #fff;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* EXPAND OVERLAY */
+.expand-overlay {
+    position: fixed;
+    inset: 0;
+    background: #f3f4f4;
+    z-index: 9999;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.expand-overlay.hidden {
+    display: none;
+}
+
+.expand-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+}
+
+.expand-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 12px;
+       overflow: visible;
+}
+
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;  
+    overflow-y: hidden;
+}
+
+
+.expand-body .gen-table {
+    width: 100%;
+    min-width: max-content; 
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.expand-body .gen-table td,
+.expand-body .gen-table th {
+    border-right: none;
+}
+
+.expand-body .gen-table thead .group-header th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+.expand-body .gen-table thead .column-header th {
+    position: sticky;
+    top: 38px;
+    z-index: 2;
+}
+
+.expand-body .gen-table thead th {
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.expand-body .gen-table td {
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    vertical-align: middle;
+    color: #4b5563;
+    border-bottom: 1px solid #cfcfd4;
+    border-right: 1px solid #7F7F7F;
+
+}
+
+.expand-body .gen-table tbody tr:nth-child(even) {
+    background: #ededf0;
+}
+
+.expand-body .gen-table td:nth-child(n+6) {
+    color: #6b7280;
+    font-size: 11.5px;
+}
+
+.expand-body .gen-table td:nth-child(4),
+.expand-body .gen-table th:nth-child(4) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ==============================
+   OPTIONAL: Nicer horizontal scrollbar
+============================== */
+.table-scroll::-webkit-scrollbar {
+    height: 7px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 6px;
+}
+/* LOCATION CELL */
+.location-cell {
+    position: relative;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+
+/* TOOLTIP BOX */
+.location-cell::after {
+    content: attr(data-location);
+    position: absolute;
+    bottom: 130%;
+    left: 0;
+    max-width: 420px;
+
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    white-space: normal;
+    word-break: break-word;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: 0.2s ease;
+    z-index: 10000;
+}
+
+.location-cell::before {
+    content: "";
+    position: absolute;
+    bottom: 115%;
+    left: 16px;
+
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.9) transparent transparent transparent;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease;
+}
+
+/* SHOW ON HOVER */
+.location-cell:hover::after,
+.location-cell:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.table-pagination {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+
+.table-pagination button {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.table-pagination button:hover:not(:disabled) {
+    background: #f3f4f6;
+}
+
+.table-pagination button.active {
+    background: #0a8159;   
+    color: #ffffff;
+    border-color: #0a8159;
+}
+
+
+.table-pagination button:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+}
+
+/* Email */
+.expand-body .gen-table th:nth-child(1),
+.expand-body .gen-table td:nth-child(1) {
+    min-width: 240px;
+    text-align: left;
+}
+
+/* Name */
+.expand-body .gen-table th:nth-child(2),
+.expand-body .gen-table td:nth-child(2) {
+    min-width: 160px;
+    text-align: left;
+}
+
+/* Capacity */
+.expand-body .gen-table th:nth-child(3),
+.expand-body .gen-table td:nth-child(3) {
+    min-width: 120px;
+}
+
+/* Location */
+.expand-body .gen-table th:nth-child(4),
+.expand-body .gen-table td:nth-child(4) {
+    min-width: 260px;
+    text-align: left;
+}

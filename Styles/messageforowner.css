@@ -1,0 +1,161 @@
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #f3f4f6;
+}
+
+.page {
+  display: flex;
+  gap: 10px;
+  height: calc(96vh - 62px); /* match navbar height */
+}
+
+/* LEFT PANEL */
+.left-panel {
+  width: 280px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+
+  /* ✅ FIX */
+  display: flex;
+  flex-direction: column;
+}
+.search-box {
+  flex-shrink: 0;
+}
+.search-box input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.owner-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+
+  /* ✅ FIX */
+  flex: 1;
+  overflow-y: auto;
+}
+
+
+.owner-list li {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #6b7280;
+  border-radius: 6px;
+}
+
+.owner-list li:hover,
+.owner-list li.active {
+  background: #e6f4ef;
+  color: #076243;
+  font-weight: 600;
+}
+
+/* RIGHT CONTENT */
+.content {
+  flex: 1;
+
+}
+
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 900px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+
+}
+.content h3{
+  color: #5F5F5F;
+  margin-bottom: 18px;
+}
+.row {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.label {
+  width: 180px;
+  color: #5F5F5F;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.field {
+  color: #333;
+  border: none;
+}
+#plantField{
+  border: none;
+  outline: none;
+}
+.radio-group label {
+  margin-right: 20px;
+}
+.radio-group input[type="radio"] {
+    width: 14px;
+    height: 14px;
+    accent-color: #007867;
+}
+.note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+/* 00A76F */
+.btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+/* RESET BUTTON */
+.btn.reset {
+  background: #ffffff;
+  border: 1px solid #6ee7b7;
+  color: #10b981;
+}
+
+/* SAVE BUTTON – DEFAULT (DISABLED) */
+.btn.save {
+  background: #c9f2e3;          /* light green */
+  color: #ffffff;
+  margin-left: 10px;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* SAVE BUTTON – ACTIVE */
+.btn.save.active {
+  background: linear-gradient(to right, #00A76F, #00A79D);          /* solid green */
+  cursor: pointer;
+  opacity: 1;
+}
+
+/* DISABLED STATE (extra safety) */
+.btn.save:disabled {
+  pointer-events: none;
+}
+.owner-list::-webkit-scrollbar {
+  width: 1px;
+}
+.owner-list::-webkit-scrollbar-thumb {
+  background: #076243;
+  border-radius: 10px;
+}

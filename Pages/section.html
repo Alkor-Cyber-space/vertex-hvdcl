@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HVDC Management</title>
+  <link rel="stylesheet" href="../Styles/Navbar.css">
+  <link rel="stylesheet" href="../Styles/section.css" />
+</head>
+
+<body>
+
+  <!-- Load Shared Header + Sidebar -->
+  <div id="header-container"></div>
+  <script>
+    fetch("../Components/Navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("header-container").innerHTML = html;
+
+        // Load active script
+        const script = document.createElement("script");
+        script.src = "../Scripts/activeLinks.js";
+        document.body.appendChild(script);
+
+        // Force "Plants" sidebar link to be active for this page
+        // Wait for DOM update
+        setTimeout(() => {
+          const sidebarLinks = document.querySelectorAll(".sidebar a");
+          sidebarLinks.forEach(link => {
+            if (link.getAttribute("href").includes("hvdcl.html")) {
+              link.classList.add("active");
+            }
+          });
+        }, 100);
+      });
+  </script>
+
+  <div class="main">
+    <div class="content">
+     <div class="filters">
+      <div class="filter-left">
+
+        <div class="input-box">
+          <img src="../Asset/location.png" class="icon" alt="Location Icon" />
+          <input type="text" value="Global" readonly>
+        </div>
+
+        <input type="text" class="search-input" placeholder="Please enter plant / SN / email">
+
+        <button class="btn btn-search">Search</button>
+      </div>
+
+      <div class="filter-right">
+       <button class="btn btn-create">Create</button>
+      </div>
+    </div>
+    
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Plant Name</th>
+              <th>Classification</th>
+              <th>Capacity</th>
+              <th>Creation Date</th>
+              <th>Operation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>M_250904_00001</td>
+              <td>Ground-Mounted</td>
+              <td>5kW</td>
+              <td>09.04.2025</td>
+              <td><a href="../Components/Devicedetail.html">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>Junaid Thalassery</td>
+              <td>Residential</td>
+              <td>15kW</td>
+              <td>02.27.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>CAPITAL ASSOCIATES</td>
+              <td>Commercial rooftop</td>
+              <td>10kW</td>
+              <td>08.29.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>M_250904_00001</td>
+              <td>Ground-Mounted</td>
+              <td>5kW</td>
+              <td>09.04.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>Junaid Thalassery</td>
+              <td>Residential</td>
+              <td>15kW</td>
+              <td>02.27.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>CAPITAL ASSOCIATES</td>
+              <td>Commercial rooftop</td>
+              <td>10kW</td>
+              <td>08.29.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+               <tr>
+              <td>M_250904_00001</td>
+              <td>Ground-Mounted</td>
+              <td>5kW</td>
+              <td>09.04.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>Junaid Thalassery</td>
+              <td>Residential</td>
+              <td>15kW</td>
+              <td>02.27.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+               <tr>
+              <td>M_250904_00001</td>
+              <td>Ground-Mounted</td>
+              <td>5kW</td>
+              <td>09.04.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>Junaid Thalassery</td>
+              <td>Residential</td>
+              <td>15kW</td>
+              <td>02.27.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+               <tr>
+              <td>M_250904_00001</td>
+              <td>Ground-Mounted</td>
+              <td>5kW</td>
+              <td>09.04.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+            <tr>
+              <td>Junaid Thalassery</td>
+              <td>Residential</td>
+              <td>15kW</td>
+              <td>02.27.2025</td>
+              <td><a href="#">Device Management</a></td>
+            </tr>
+          </tbody>
+          
+        </table>
+         <div class="table-footer">
+        <button class="next-btn">Next</button>
+      </div>
+  
+
+     
+    </div>
+    <!-- HIDDEN FORM SECTION (Shown when clicking Create) -->
+  <div class="create-form-container" style="display:none; ">    
+      <div class="card">
+        <h3>G10090022Pv plantN640</h3>
+        <div class="info-row">
+          <strong>Owner :</strong>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="table">
+          <div class="table-header">
+            <span>Email</span>
+            <span>Operation</span>
+          </div>
+          <div class="table-content editable">
+  Please add owner information
+</div>
+
+        </div>
+      </div>
+
+      <div class="card2">
+        <div class="info-row">
+          <strong>Visitor :</strong>
+          <button class="add-btn">Add</button>
+        </div>
+
+        <div class="table">
+          <div class="table-header">
+            <span>Email</span>
+            <span>Operation</span>
+          </div>
+          <div class="table-content editable">
+  Please add owner information
+</div>
+
+        </div>
+
+      </div>
+
+      <!-- FORM BELOW THE CARD -->
+    <form class="form-grid">
+      <!-- left-->
+      <div>
+         <div class="form-group">
+          <label>Plant Name :</label>
+          <input type="text" value="G10090022Pv plantN640" />
+          </div>
+        <div class="form-group">
+          <label>Classification</label>
+          <select>
+            <option>Residential</option>
+            <option>Commercial rooftop</option>
+            <option>Ground-Mounted</option>
+            <option>Battery Storage</option>
+            <option>C&I Energy Storage</option>
+          </select>
+        </div>
+          <div class="form-group">
+          <label>Location</label>
+          <div class="location-box">
+            <input type="text" placeholder="Location" />
+            <button class="map-btn" type="button">Map</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Detailed Address</label>
+          <input type="text" placeholder="Detailed Address" />
+         
+        </div>
+       <div class="form-group">
+        <label>Enable Profile</label>
+           <div class="radio-group">
+              <label><input type="radio" name="status" checked /> Enable</label>
+              <label><input type="radio" name="status" /> Disable</label>
+            </div>
+          </div>
+        <div class="form-group">
+          <label>Create Date</label>
+          <input type="text" placeholder="Create Date" />
+        </div>
+       <div class="form-group">
+        <div class="form-label">
+          <label>Time Zone</label>
+          <label>Profit ratio</label>
+  
+        </div>
+
+        <div id="timezone-grid" class="timezone-grid">
+          <!-- Default 4 rows = 12 inputs -->
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+          <input type="text" placeholder="00-00-0000" />
+        </div>
+
+        <div class="timezone-actions">
+          <button id="timezone-add" class="add-timezone-btn">Add</button>
+        </div>
+       </div>
+     </div>
+     <!-- right-->
+      <div> 
+        <div class="form-group">
+          <label>Plant Info :</label>
+          <div class="upload-box" id="upload-box">
+              <div id="preview-wrapper">
+                <svg id="upload-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.2091 15.2406C17.1842 15.2088 17.1525 15.1832 17.1162 15.1655C17.08 15.1478 17.0402 15.1387 16.9999 15.1387C16.9596 15.1387 16.9198 15.1478 16.8836 15.1655C16.8473 15.1832 16.8156 15.2088 16.7907 15.2406L13.072 19.9455C13.0413 19.9846 13.0223 20.0316 13.0171 20.0811C13.0119 20.1305 13.0207 20.1804 13.0425 20.2251C13.0643 20.2698 13.0983 20.3074 13.1405 20.3337C13.1827 20.36 13.2314 20.3739 13.2812 20.3738H15.7349V28.4222C15.7349 28.5683 15.8544 28.6879 16.0005 28.6879H17.9927C18.1388 28.6879 18.2583 28.5683 18.2583 28.4222V20.3771H20.7187C20.9411 20.3771 21.064 20.1214 20.9278 19.9488L17.2091 15.2406Z" fill="#0A8159"/>
+                  <path d="M26.941 12.1756C25.4203 8.16465 21.5455 5.3125 17.0066 5.3125C12.4678 5.3125 8.59297 8.16133 7.07227 12.1723C4.22676 12.9193 2.125 15.5125 2.125 18.5938C2.125 22.2627 5.09668 25.2344 8.7623 25.2344H10.0938C10.2398 25.2344 10.3594 25.1148 10.3594 24.9688V22.9766C10.3594 22.8305 10.2398 22.7109 10.0938 22.7109H8.7623C7.64336 22.7109 6.59082 22.266 5.80723 21.4592C5.02695 20.6557 4.61191 19.5732 4.64844 18.451C4.67832 17.5744 4.97715 16.751 5.51836 16.057C6.07285 15.3498 6.8498 14.8352 7.71309 14.6061L8.97148 14.2773L9.43301 13.0621C9.71855 12.3051 10.117 11.5979 10.6184 10.957C11.1133 10.3219 11.6996 9.76354 12.3582 9.3002C13.7229 8.34063 15.3299 7.83262 17.0066 7.83262C18.6834 7.83262 20.2904 8.34063 21.6551 9.3002C22.3158 9.76504 22.9002 10.3229 23.3949 10.957C23.8963 11.5979 24.2947 12.3084 24.5803 13.0621L25.0385 14.274L26.2936 14.6061C28.0932 15.0908 29.3516 16.7277 29.3516 18.5938C29.3516 19.6928 28.9232 20.7287 28.1463 21.5057C27.7653 21.8889 27.312 22.1928 26.8127 22.3997C26.3135 22.6066 25.7781 22.7124 25.2377 22.7109H23.9062C23.7602 22.7109 23.6406 22.8305 23.6406 22.9766V24.9688C23.6406 25.1148 23.7602 25.2344 23.9062 25.2344H25.2377C28.9033 25.2344 31.875 22.2627 31.875 18.5938C31.875 15.5158 29.7799 12.926 26.941 12.1756Z" fill="#0A8159"/>
+                </svg>
+              </div>
+              <img id="preview-img" class="upload-preview-img" style="display:none;" />
+              <p>Drag and Drop here <br><strong>or</strong></p>
+              <button class="file-btn" type="button" id="select-file-btn">Select file</button>
+              <input type="file" id="file-input" accept="image/*" hidden>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Warranty</label>
+          <input type="text" placeholder="Warranty" />
+        </div>
+
+        <div class="form-group">
+          <label>Capacity(kW)</label>
+          <input type="text" placeholder="Capacity" />
+        </div>
+        <div class="form-group">
+          <label>Profit Ratio</label>
+          <div style="display:flex; gap:10px;">
+            <input type="text" value="0.22" />
+            <select >
+              <option>USD/kWh</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+            <label>Organization code</label>
+            <input type="text" value="G10090022Pv plantN640" />
+            <small>Leave this empty if you don't know the installer's code.</small>
+        </div>
+        <div class="form-group">
+          <label>Amount of solar panel</label>
+          <input type="text" value="0" />
+        </div>
+
+         <div class="form-group ">
+          <label>Plant Profile</label>
+          <textarea rows="4">
+          </textarea>
+         </div>
+      </div>  
+      <div class="form-group full">
+          <p class="tips">
+            Tips: After adding meter, battery, generator, please restart the inverter to refresh plant view.
+          </p>
+           <div class="form-footer" >
+              <button class="cancel-btn">Cancel</button>
+              <button class="register-btn">Register</button>
+          </div>
+      </div>
+    </form>
+   </div>
+  </div>
+    </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ===============================
+     ADD OWNER / VISITOR INPUT
+  =============================== */
+  document.querySelectorAll(".add-btn").forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const card = button.closest(".card, .card2");
+      if (!card) return;
+
+      const content = card.querySelector(".table-content");
+      if (!content) return;
+
+      // Prevent duplicate input
+      if (content.querySelector("input")) return;
+
+      content.innerHTML = `
+        <input 
+          type="email" 
+          class="email-input"
+          placeholder="Enter email address"
+        />
+      `;
+    });
+  });
+
+  /* ===============================
+     TIMEZONE INPUT ADD
+  =============================== */
+  const grid = document.getElementById("timezone-grid");
+  const addBtn = document.getElementById("timezone-add");
+
+  if (grid && addBtn) {
+    addBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      for (let i = 0; i < 3; i++) {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "00-00-0000";
+        input.className = "timezone-input";
+        grid.appendChild(input);
+      }
+    });
+  }
+
+  /* ===============================
+     FILE UPLOAD (DRAG & DROP)
+  =============================== */
+  const fileInput = document.getElementById("file-input");
+  const selectBtn = document.getElementById("select-file-btn");
+  const previewImg = document.getElementById("preview-img");
+  const uploadBox = document.getElementById("upload-box");
+  const uploadIcon = document.getElementById("upload-icon");
+
+  if (fileInput && selectBtn && uploadBox) {
+
+    selectBtn.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        previewImg.src = URL.createObjectURL(file);
+        previewImg.style.display = "block";
+        uploadIcon.style.display = "none";
+      }
+    });
+
+    uploadBox.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadBox.style.borderColor = "#00a76f";
+    });
+
+    uploadBox.addEventListener("dragleave", () => {
+      uploadBox.style.borderColor = "#bbb";
+    });
+
+    uploadBox.addEventListener("drop", (e) => {
+      e.preventDefault();
+      uploadBox.style.borderColor = "#bbb";
+
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        fileInput.files = e.dataTransfer.files;
+        previewImg.src = URL.createObjectURL(file);
+        previewImg.style.display = "block";
+        uploadIcon.style.display = "none";
+      }
+    });
+  }
+
+  /* ===============================
+     CREATE / CANCEL FORM
+  =============================== */
+  const createBtn = document.querySelector(".btn-create");
+  const formContainer = document.querySelector(".create-form-container");
+  const cancelBtn = document.querySelector(".btn-cancel");
+
+  if (createBtn && formContainer) {
+    createBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      formContainer.style.display = "block";
+      formContainer.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  if (cancelBtn && formContainer) {
+    cancelBtn.addEventListener("click", () => {
+      formContainer.style.display = "none";
+    });
+  }
+
+});
+</script>
+</body>
+
+</html>

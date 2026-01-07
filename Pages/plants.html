@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants - Solar Management System</title>
+    <link rel="stylesheet" href="../styles/Navbar.css">
+    <link rel="stylesheet" href="../styles/plants.css">
+
+    <style>
+        /* Hide sidebar for this page only */
+        .sidebar {
+            display: none !important;
+        }
+
+        /* Reset margin for main content */
+        .main-content,
+        .container {
+            margin-left: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Status Legend Styles */
+        .status-legend {
+            display: flex;
+            gap: 18px;
+            padding: 12px 0;
+            margin-top: 10px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 3px 10px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .status-item.active {
+            background: #e5edff;
+            border: 1px solid #005eff;
+        }
+
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-dot.working {
+            background: #28a745;
+        }
+
+        .status-dot.fault {
+            background: #dc3545;
+        }
+
+        .status-dot.waiting {
+            background: #ffc107;
+        }
+
+        .status-dot.offline {
+            background: #6c757d;
+        }
+
+        /* CLICKABLE ROW */
+        .click-row {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .click-row:hover {
+            background-color: #f4f7ff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="header-container"></div>
+    <script>
+        fetch("../Components/Navbar.html")
+            .then(res => res.text())
+            .then(html => document.getElementById("header-container").innerHTML = html);
+    </script>
+
+    <div class="container">
+        <!-- Top Filters -->
+        <div class="filters-top">
+           <div class="filter-group location-filter">
+                <img class="select-icon" src="../Asset/location.png" />
+                <input
+                    id="locationInput"
+                    class="input"
+                    type="text"
+                    placeholder="Global"
+                    readonly
+                />
+                <div id="locationDropdown" class="location-dropdown hidden"></div>
+            </div>
+
+            <div class="filter-group">
+                <img class="select-icon" src="../Asset/grid.png" alt="Global Icon" />
+                <select id="org-code-filter">
+                    <option value="">Organization Code</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <img class="select-icon" src="../Asset/bolt.png" alt="Global Icon" />
+                <input class="input" type="text" id="search-input" placeholder="Please enter plant / SN / email">
+            </div>
+            <button class="btn-search" onclick="searchPlants()">Search</button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="stat-card">
+  <div class="stat-card-header">
+    <span class="stat-card-title">Status Overview</span>
+    <img class="select-icon" src="../Asset/doc.png" alt="Status Icon">
+  </div>
+
+  <div class="status-content">
+    <div class="status working">
+      <span class="dot"></span>
+      Working
+      <span class="count" id="count-working">0</span>
+    </div>
+
+    <div class="status fault">
+      <span class="dot"></span>
+      Fault
+      <span class="count" id="count-fault">0</span>
+    </div>
+
+    <div class="status waiting">
+      <span class="dot"></span>
+      Waiting
+      <span class="count" id="count-waiting">0</span>
+    </div>
+
+    <div class="status offline">
+      <span class="dot"></span>
+      Offline
+      <span class="count" id="count-offline">0</span>
+    </div>
+  </div>
+</div>
+
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">New Plants This Month</span>
+                    <img class="select-icon" src="../Asset/doc.png" alt="Status Icon">
+                </div>
+                <div class="content">
+                    <div style="font-size: 22px; font-weight: 700;">1(Plants)</div>
+                    <div>5.00 kW</div>
+                </div>
+
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">Generation and Income Today</span>
+                    <img class="select-icon" src="../Asset/doc.png" alt="Status Icon">
+                </div>
+                <div class="content">
+                    <div>77.90(kWh)</div>
+                    <div>13.50(USD)</div>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-title">Total Generation and Income</span>
+                    <img class="select-icon" src="../Asset/doc.png" alt="Status Icon">
+                </div>
+                <div class="content">
+                    <div>371.99 MWh</div>
+                    <div>63972.98 USD</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Legend -->
+        <div class="status-legend">
+            <div class="status-item" onclick="filterByStatus('fault')">
+                <span class="status-dot fault"></span><span>Fault</span>
+            </div>
+
+            <div class="status-item" onclick="filterByStatus('offline')">
+                <span class="status-dot offline"></span><span>Offline</span>
+            </div>
+
+            <div class="status-item" onclick="filterByStatus('waiting')">
+                <span class="status-dot waiting"></span><span>Waiting</span>
+            </div>
+
+            <div class="status-item" onclick="filterByStatus('working')">
+                <span class="status-dot working"></span><span>Working</span>
+            </div>
+
+            <div class="status-item" onclick="filterByStatus('')">
+                <span style="font-size:12px; margin-left:10px;">Reset</span>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table id="plants-table">
+                <thead>
+                    <tr>
+                        <th>Plant</th>
+                        <th>Location</th>
+                        <th>Power</th>
+                        <th>Capacity</th>
+                        <th>
+                            <select class="header-select">
+                                <option value="today">Today</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </th>
+                        <th>Total</th>
+                        <th>Total Yield</th>
+                       <th id="classificationTh" class="classification-th">
+  <span class="class-header">
+    Classification <span id="classArrow">▲</span>
+  </span>
+
+  <div id="classificationDropdown" class="class-dropdown hidden">
+    <div data-value="">All</div>
+    <div data-value="Battery storage">Battery storage</div>
+    <div data-value="Residential">Residential</div>
+    <div data-value="Commercial rooftop">Commercial rooftop</div>
+    <div data-value="Ground-Mounted">Ground-Mounted</div>
+  </div>
+</th>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="table-footer">
+                <div class="table-info"></div>
+                <div class="pagination">
+                    <button class="btn-pagination" onclick="previousPage()">Previous</button>
+                    <button class="btn-pagination" onclick="nextPage()">Next</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../Scripts/activeLinks.js"></script>
+    <script src="../Scripts/plant.js"></script>
+
+</body>
+
+</html>

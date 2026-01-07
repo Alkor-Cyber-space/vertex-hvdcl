@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generation Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Styles/generationreports.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-item">
+                    <div class="menu-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        <span>Historical Data</span>
+                    </div>
+                </div>
+                <!-- Collapsed submenu for data selection since we are on reports page -->
+                <div class="submenu plain">
+                    <a href="index.html" class="submenu-item" style="text-decoration: none; display: block;">Data
+                        Selection</a>
+                    <a href="index_1.html" class="submenu-item" style="text-decoration: none; display: block;">My
+                        Template</a>
+                </div>
+
+                <div class="menu-item active" id="menu-reports" style="cursor: pointer;">
+                    <div class="menu-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span>Generation Reports</span>
+                    </div>
+                </div>
+
+                <div class="menu-item" id="menu-statistics" style="cursor: pointer;">
+                    <div class="menu-title">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>Statistics</span>
+                    </div>
+                </div>
+                <div class="submenu plain">
+                    <div class="submenu-item">Monthly</div>
+                    <div class="submenu-item">Annual</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+      <main class="main-content">
+         <div class="content-wrapper">
+            <div class="gen-tabs-container">
+                <div class="gen-tab" data-tab="plant">Plant</div>
+                <div class="gen-tab" data-tab="location">Location</div>
+                <div class="gen-tab" data-tab="organization">Organization</div>
+                <div class="gen-tab" data-tab="inverter">Inverter</div>
+                <!-- HELP TEXT + POPUP (SEPARATE) -->
+                <div class="daily-help-wrapper">
+                    <div id="daily-help-text" class="daily-help-text" style="display:none;">
+                        Can't find the target plant?
+                    </div>
+
+                    <div class="export-popup" id="export-popup">
+                        <div class="popup-arrow"></div>
+                        <div class="popup-text">
+                            Daily report is only available for plants with load monitoring
+                            function which is enabled by HomeKit or SEC1000.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+                <!-- Filter Bar -->
+            <div class="filter-bar">
+                <!-- Reports Mode Search Group -->
+                <div class="search-group" id="search-group-reports">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+
+                    <div class="search-input-wrapper">
+                        <div id="search-tags-container"></div>
+                        <input
+                            type="text"
+                            class="search-input-field"
+                            placeholder="Please enter plant / SN / email"
+                        >
+                    </div>
+                </div>
+
+            <!-- Report Type Filter -->
+            <select class="filter-select" id="filter-report-type">
+                <option>Daily Report</option>
+                <option>Monthly Report</option>
+                <option>Annual Report</option>
+                <option>User-defined Report</option>
+                <option>Simulation Report</option>
+            </select>
+
+            <!-- DATE FILTER -->
+            <div class="date-range-wrapper" id="date-range-wrapper">
+
+                <!-- Single Date / Month / Year (controlled by JS) -->
+                <input
+                    type="date"
+                    class="filter-date-input"
+                    id="single-date-input"
+                    placeholder="Please Select Date"
+                >
+
+                <!-- Date Range (User-defined only) -->
+                <div class="date-range" id="date-range-inputs" style="display:none;">
+                    <input type="date" id="date-from" placeholder="From">
+                    <span class="date-separator">-</span>
+                    <input type="date" id="date-to" placeholder="To">
+                </div>
+
+             </div>
+
+        <!-- Buttons -->
+            <div class="btns-container">
+                <button class="btn-generate" id="btn-generate-report">
+                    Generate Report
+                </button>
+
+                <div class="export-btn-wrapper">
+                    <button class="btn-export-gray" id="btn-export">
+                        Export
+                    </button>
+
+                  
+                </div>
+                 </div>
+
+            </div>
+
+
+                <!-- Display Area -->
+                <div class="reports-display-area">
+                    <!-- Default State: No Data Illustration -->
+                    <div class="no-data-illustration" id="no-data-view">
+                        <!-- Content removed as per user request -->
+                    </div>
+
+                    <!-- Results View: Graph and Table -->
+                    <div id="report-results-view"
+                        style="display: none; flex-direction: column; width: 100%; gap: 30px;">
+
+                        <!-- Graph Section -->
+                        <div class="chart-section"
+                            style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                            <canvas id="reportChart" style="width: 100%; height: 350px;"></canvas>
+                        </div>
+
+                        <!-- Table Section -->
+                        <div class="table-section">
+                            <div class="section-header" id="results-table-header"
+                                style="background: #f1f1f1; padding: 12px 15px; border-radius: 8px 8px 0 0; font-weight: bold; color: #333; font-size: 16px; border-bottom: 2px solid #00875a;">
+                                Statistics
+                            </div>
+                            <div class="table-responsive">
+                                <table class="custom-table"
+                                    style="width: 100%; border-collapse: collapse; border: 1px solid #e0e0e0;">
+                                    <thead style="background-color: #00875a; color: white;" id="report-table-head">
+                                        <!-- Header generated by JS -->
+                                    </thead>
+                                    <tbody id="report-table-body">
+                                        <!-- Rows generated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: "Spice" / Continuous Content (Initially Hidden) -->
+                        <div id="results-step-2"
+                            style="display: none; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #eee;">
+                            <div
+                                style="font-size: 18px; font-weight: bold; color: #00875a; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                                Spice / Continuous Monitoring
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 15px; color: #555;">
+                                <p>Dynamic continuous data and monitoring indicators will be displayed in this section.
+                                    This view provides a real-time perspective on the generated statistics.</p>
+                                <div
+                                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 10px;">
+                                    <div
+                                        style="padding: 15px; background: #f9f9f9; border-radius: 6px; border-left: 4px solid #00875a;">
+                                        <div style="font-size: 12px; color: #888;">Live Performance</div>
+                                        <div style="font-size: 20px; font-weight: bold; color: #333;">98.4%</div>
+                                    </div>
+                                    <div
+                                        style="padding: 15px; background: #f9f9f9; border-radius: 6px; border-left: 4px solid #00875a;">
+                                        <div style="font-size: 12px; color: #888;">Current Voltage</div>
+                                        <div style="font-size: 20px; font-weight: bold; color: #333;">230.5V</div>
+                                    </div>
+                                    <div
+                                        style="padding: 15px; background: #f9f9f9; border-radius: 6px; border-left: 4px solid #00875a;">
+                                        <div style="font-size: 12px; color: #888;">Frequency</div>
+                                        <div style="font-size: 20px; font-weight: bold; color: #333;">50.02 Hz</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Action -->
+                        <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 20px;">
+                            <button class="ps-btn ps-btn-cancel" id="btn-prev-step"
+                                style="width: 120px; display: none; background: #f5f5f5; color: #666; border: 1px solid #ddd;">Previous</button>
+                            <button class="ps-btn ps-btn-confirm" id="btn-next-step" style="width: 120px;">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Plant Selection Modal -->
+    <div class="modal-overlay" id="plant-modal-overlay">
+        <div class="plant-selection-modal">
+            <div class="ps-header">
+                <div class="ps-tabs">
+                    <div class="ps-tab active">Plant</div>
+                    <div class="ps-tab">SN</div>
+                    <div class="ps-tab">Location</div>
+                    <div class="ps-tab">Organization</div>
+                </div>
+                <div class="ps-search-container">
+                    <!-- Using specific SVG for search icon inside modal if needed, or simple placeholder -->
+                    <svg style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9e9e9e; width: 14px; height: 14px;"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" class="ps-search-input" placeholder="Please enter plant name">
+                </div>
+            </div>
+
+            <!-- Body with Dual Panes -->
+            <div class="ps-body">
+                <div id="view-plant" style="display: flex; gap: 20px; width: 100%;">
+                    <!-- Left Panel: Select Plant -->
+                    <div class="ps-panel">
+                        <div class="ps-panel-header">
+                            <span>Select plant</span>
+                        </div>
+                        <div class="ps-helper-banner">
+                            To make the selection, click <i class="fa-solid fa-file-circle-plus"
+                                style="color: #00bfa5;"></i>
+                            <div class="ps-help-container">
+                                <span class="ps-help-icon">?</span>
+                                <div class="ps-note">
+                                    Daily report is only available for plants with load monitoring function which is
+                                    enabled by HomeKit or SEC1000.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ps-list-content" id="ps-source-list">
+                            <!-- Items will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: Selected List -->
+                    <div class="ps-panel">
+                        <div class="ps-panel-header">
+                            <span>Selected list</span>
+                            <button class="btn-clear-all" id="btn-clear-selection">Clear All</button>
+                        </div>
+                        <div class="ps-helper-banner" style="position: relative;">
+                            To cancel the selection, click <i class="fa-solid fa-trash-can" style="color: #ff5722;"></i>
+                        </div>
+                        <div class="ps-list-content" id="ps-selected-list">
+                            <!-- Items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="ps-footer">
+                <button class="ps-btn ps-btn-cancel" id="btn-cancel-modal">Cancel</button>
+                <button class="ps-btn ps-btn-confirm" id="btn-confirm-modal">Confirm</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="location-modal-overlay">
+        <div class="location-selection-modal">
+            <div class="ls-header">
+                <h3>Location Selection</h3>
+            </div>
+
+            <div class="ls-body">
+                <div class="ls-helper-box">
+                    Click on location to access sub-level<br>
+                    Move the mouse in and click the icon <i class="fa-regular fa-file" style="color: #00bfa5;"></i><i
+                        class="fa-solid fa-plus" style="font-size: 8px; vertical-align: top; color: #00bfa5;"></i> to
+                    select the location
+                </div>
+
+                <div class="ls-breadcrumb-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span id="ls-current-path" style="color: #999;">Global/India/Kerala/Kannur</span>
+                </div>
+
+                <div class="ls-panels-container">
+                    <!-- Left Panel -->
+                    <div class="ls-panel left-panel">
+                        <div class="ls-list" id="ls-source-list"></div>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="ls-panel right-panel">
+                        <div class="ls-panel-header">
+                            <span>Selected list</span>
+                            <button class="ls-btn-clear" id="ls-btn-clear">Clear All</button>
+                        </div>
+                        <div class="ls-helper-banner">
+                            To cancel the selection, click <i class="fa-regular fa-trash-can"
+                                style="color: #ff5722;"></i>
+                        </div>
+                        <div class="ls-list" id="ls-selected-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ls-footer">
+                <button class="ls-btn ls-btn-cancel" id="ls-btn-cancel">Cancel</button>
+                <button class="ls-btn ls-btn-confirm" id="ls-btn-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    <!-- ORGANIZATION MODAL -->
+    <div class="modal-overlay" id="org-modal-overlay">
+        <div class="org-selection-modal">
+
+            <!-- BODY -->
+            <div class="org-body">
+
+                <!-- PANELS -->
+            <div class="org-panels">
+                <div class="org-panel left">
+                    <div class="org-header">
+                    <p>Organizations</p>
+                    </div>
+                    <div style="padding:8px 6px 0; display:flex; flex-direction:column; gap:6px;" >
+                        <div class="org-helper-box">
+                        Select Plants
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                        </div>
+        
+                        <div class="org-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Organization Info">
+                        </div>
+                        <div id="org-source-list"></div>
+                    </div>
+                </div>
+
+                    <!-- RIGHT -->
+                <div class="org-panel right">
+                    <div class="org-panel-header">
+                            <span>Selected list</span>
+                            <button id="org-btn-clear">Clear All</button>
+                    </div>
+
+                    <div class="org-helper-banner">
+                            To cancel the selection, click <i class="fa-regular fa-trash-can"></i>
+                    </div>
+                    <div id="org-selected-list"></div>
+                </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="org-footer">
+                <button id="org-btn-cancel">Cancel</button>
+                <button id="org-btn-confirm">Confirm</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- INVERTER  MODAL -->
+    <div class="modal-overlay" id="inverter-modal-overlay">
+    <div class="inverter-selection-modal">
+
+        <!-- BODY -->
+        <div class="inverter-body">
+        <div class="inverter-panels">
+
+            <!-- LEFT PANEL : SOURCE -->
+            <div class="inverter-panel left">
+            <div class="inverter-header">
+                <p>Inverters</p>
+            </div>
+
+            <div class="inverter-left-content">
+
+                <!-- HELPER -->
+                <div class="inverter-helper-box">
+                Select Plants
+                <i class="fa-solid fa-file-circle-plus"></i>
+                </div>
+
+                <!-- SEARCH -->
+                <div class="inverter-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    placeholder="Search by Plant / Inverter / Serial No">
+                </div>
+
+                <!-- SOURCE LIST -->
+                <div id="inverter-source-list">
+
+                <!-- PLANT -->
+                <div class="plant-item">
+                    <div class="plant-header" onclick="togglePlant(this)">
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    <span class="plant-name">BINU</span>
+                    </div>
+
+                    <!-- INVERTERS UNDER PLANT -->
+                    <div class="plant-details">
+
+                    <div class="inverter-row">
+                        <div class="inverter-info">
+                        <div class="inverter-model">GW3300-XS</div>
+                        <input
+                            type="text"
+                            class="inverter-sn"
+                            value="53300SSX22BW1357"
+                            readonly>
+                        </div>
+
+                        <i class="fa-solid fa-file-circle-plus add-icon"
+                        onclick="addToSelected(
+                            'BINU',
+                            'GW3300-XS',
+                            '53300SSX22BW1357'
+                        )"></i>
+                    </div>
+
+                    </div>
+                </div>
+
+
+                </div>
+            </div>
+            </div>
+
+            <!-- RIGHT PANEL : SELECTED -->
+            <div class="inverter-panel right">
+            <div class="inverter-panel-header">
+                <span>Selected </span>
+                <button id="inverter-btn-clear">Clear All</button>
+            </div>
+
+            <div class="inverter-helper-banner">
+                To remove an plant, click
+                <i class="fa-regular fa-trash-can"></i>
+            </div>
+
+            <div id="inverter-selected-list">
+                <!-- Selected inverter cards -->
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="inverter-footer">
+        <button id="inverter-btn-cancel">Cancel</button>
+        <button id="inverter-btn-confirm">Confirm</button>
+        </div>
+
+    </div>
+    </div>
+
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Generation Reports Script -->
+    <script src="../../Scripts/generationreports.js"></script>
+</body>
+
+</html>
